@@ -7,10 +7,16 @@ public class Parser {
     
     private Parser(){}
     
-    static class DeString{        
+    public static class DeString{        
         public static int aInt(String value){
+            int intValue = 0;
             // Logic code here
-            return 0;
+            try{
+                intValue = Integer.parseInt(value);
+            }catch (Exception error){
+                  System.out.println( "Error Desconocido" );
+            }
+            return intValue;
         }
         
         public static boolean aBool(String value){
