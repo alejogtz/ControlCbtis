@@ -16,7 +16,24 @@
     </head>
 
     <body>       
-        <div class=""
+        <%-- 
+            // Aque se muestra el menu de opciones para el portero
+            // Como cerrar sesion
+            // Las funciones a las que puede acceder que es 
+            //  Cambiar contraseña y 
+        
+            // #Agregar Regla de que se necesita Firefox o navegador que soporte JS y el elemento Button
+        --%>
+        <div class="menu-navegacion">
+             <%-- 
+                # Navegando encontre lo siguiente:  
+                // En HTML5 fue introducido un nuevo mecanismo para poder separar los elementos de 
+                // formulario (buttons, inputs, etc) del formulario. El atributo form asocia un control con un <form>:
+            --%>
+            <form action="/Logout" id="form-cerrar-sesion">
+                <button type="submit"  name="btn-cerrar-sesion">Cerrar sesion</button>
+            </form>
+        </div>
             
         <%--
             // Menu de navegacion 
@@ -38,7 +55,7 @@
                 <legend> Datos del alumno </legend>
                 <fielset> 
                     <label for="input-name">Nombre</label>
-                    <input type="text"  onpaste="insertarAlumno()" value="Alejo" name="input-name" />
+                    <input type="text"  onpaste="alert(this)" value="Alejo" name="input-name" />
                     <button type="submit"  name="btn-submit-busqueda">Enviar</button>
 
                     <label for="input-nocontrol">No. de control</label>

@@ -1,6 +1,6 @@
 
 // Agregar automaticamente alumnos
-function eventHandlingPaste() {
+function insertarAlumno() {
     // Capturar el contenido del recuadro
     var nocontrol = document.getElementsById("input-nocontrol");
     
@@ -14,8 +14,7 @@ function eventHandlingPaste() {
             document.getElementById("demo").innerHTML = this.responseText;
         }else{
             // Si no se inserta, Appen el mensaje de error en el mismo div
-        }
-        
+        }       
     };
     xhttp.open("POST", "ServletCoordinacion", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

@@ -3,7 +3,10 @@
 <%@ page import="org.proyectoCbtis.java.Util.Parser.DeObject"%>
 <%@ page import="org.proyectoCbtis.java.Util.Parser.DeString"%>
 
-
+<%--
+    // Load File de busqueda
+    // Este File tendra su propio form 
+--%>
 <div class = "busqueda" >
     <% 
         // Capturar el no de control
