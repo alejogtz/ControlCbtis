@@ -1,24 +1,35 @@
 package org.proyectoCbtis.java.Datos;
 
+import Controlador.Conexion;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OperacionAsistencias {
-    Connection con = null;
-    public OperacionAsistencias() {
-         con = new ConexionBD().getConexion();
-    }
-    
-    public static boolean insertarAsistencia( int nocontrol, String hora_fecha ){
-        // Consulta e insercion
+
+    public OperacionAsistencias() {}
+
+    public boolean insertarAsistencia(int nocontrol){
+        Connection con = new Conexion().getConexion();
         
-        return true;
-    }
-    
-    public static boolean insertarAsistencia( int nocontrol, Date hora_fecha ){
-        // Consulta e insercion
+        String query = "INSERT INTO asistencia\n"
+                + "values ( 0, ?, CURRENT_DATE, CURRENT_TIME, 'Ninguno')";
         
-        return true;
+        PreparedStatement execQuery = null;
+        try { 
+            execQuery = con.prepareStatement(query);
+            execQuery.setInt(1, nocontrol);
+            int sucess = execQuery.executeUpdate();
+            execQuery.close();
+            System.out.println("org.proyectoCbtis.java.Datos.OperacionAsistencias.insertarAsistencia(): " +sucess);
+            return sucess == 1;
+        } catch (SQLException | NullPointerException ex) {
+            Logger.getLogger(OperacionAsistencias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
-    
+
 }

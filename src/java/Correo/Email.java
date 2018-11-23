@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Correo;
 import java.util.Properties;
 import javax.mail.Message;
@@ -5,7 +10,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+/**
+ *
+ * @author carlosA
+ */
 public class Email {
     
     //public boolean enviarCorreo(String de, String clave, String[] para, String mensaje, String asunto){
@@ -53,11 +61,11 @@ public class Email {
         
         return "CORREO ELECTRONICO NO ENVIADO";
     }
-    
+    /*
     public static void main(String[] args) {
         Email email = new Email();
         System.out.println(
         email.enviarCorreo("restaurarcontrasena123@gmail.com", "ejhmrxbmzbjayssf", "carlos_19alber@hotmail.com", "asad", "asdasd"));
-    }
+    }*/
     
 }

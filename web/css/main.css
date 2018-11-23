@@ -1,5 +1,18 @@
-body{
-    background-color: #ffffff;
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/11/2018, 02:56:18 PM
+    Author     : carlosA
+*/
+
+#body{
+	background-image: url("../images/fondo.png");
+    margin-top: 0px;
+    height: 350px;
+    background-size: cover;  
 }
 
 #oculto{
@@ -9,3 +22,52 @@ display : none;
 .error{
     border: solid 2px #FF0000;
 }
+
+#contenedor{
+    background-color: whitesmoke;
+    margin-top: 0px;
+    padding-top: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+  	padding-bottom: 10px;
+    border-radius: 12px;
+ 
+}
+
+#h2{
+    text-transform: uppercase;
+    color: #2269b9;    
+    font-style: italic;  
+    text-align: center;
+    letter-spacing: 4px;
+    font-size: 30px;
+    margin-top: 10px; 
+    margin-bottom: 5px;
+ }
+ 
+ #usuario{
+ 	margin-right: 30%;
+    margin-left: 35%;
+    margin-top: 5%;   
+ 
+ }
+ 
+ #password{ 	 	
+    margin-right: 30%;
+    margin-left: 35%;
+    margin-top: 40px;   
+ 
+ }
+ 
+ #botonsubmit{
+    margin-left: 45%;
+    margin-top: 40px;   
+ 
+ }
+ 
+ #botonrecuperar{
+    margin-left: 75%;
+    margin-top: 40px;  
+    padding-botton:20px; 
+       position: fixed; 
+ }

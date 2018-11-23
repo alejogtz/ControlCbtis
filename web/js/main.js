@@ -10,7 +10,7 @@ window.addEventListener('load',function(){
         var contrasena = document.getElementById('txtpass').value;
         
         var bandera = false;
-        
+       
         if((nombre.length > 0 && nombre.length <= 16) && (contrasena.length > 0 && contrasena.length <= 16)){
             bandera = true;
             
@@ -34,5 +34,7 @@ function mostrar(){
    document.getElementById('oculto').style.display = 'block';
    
 }
+
+
 
 

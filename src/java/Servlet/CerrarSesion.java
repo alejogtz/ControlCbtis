@@ -1,7 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlet;
 
-import Controlador.Consultas;
-import Utilidades.md5;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,15 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author carlosA
  */
-@WebServlet(name = "IniciarSesion", urlPatterns = {"/Iniciar"})
-public class InicioSesion extends HttpServlet {
-    
-    
+@WebServlet(name = "CerrarSesion", urlPatterns = {"/CerrarSesion"})
+public class CerrarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,30 +32,17 @@ public class InicioSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        String usuario = request.getParameter("usuario");
-        String encriptado = request.getParameter("contrasena");
-        
-        String contrasena;
-        contrasena = md5.Encriptar(encriptado);
-        
-        Consultas co = new Consultas();
-        if(co.autenticacion(usuario, contrasena)){
-            if("coordinador".equals(usuario)){
-            HttpSession objsesion = request.getSession(true);
-            objsesion.setAttribute("usuario", usuario);
-            response.sendRedirect("coordinadora.jsp");
-            }else {
-                HttpSession objsesion = request.getSession(true);
-                objsesion.setAttribute("usuario", usuario);
-                response.sendRedirect("vigilante.jsp");
-            }
-        }else{
-           out.println("Invalid password <a href='index.jsp'>try again</a>");
-        }
-        
+            response.setContentType("text/html");  
+            PrintWriter out=response.getWriter();  
+              
+            request.getRequestDispatcher("index.jsp").include(request, response);  
+              
+            HttpSession session=request.getSession();  
+            session.invalidate();  
+              
+            out.print("You are successfully logged out!");  
+            
+            out.close();  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

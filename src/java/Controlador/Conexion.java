@@ -1,14 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controlador;
+
 
 import static java.lang.Class.forName;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ *
+ * @author carlosA
+ */
 public class Conexion {
     
     private String USERNAME = "root";
-    private String PASSWORD = "chivas1958";
+    private String PASSWORD = "";
     private String HOST = "localhost";
     private String PORT = "3306";
     private String DATABASE = "cbetis123";

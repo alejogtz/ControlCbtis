@@ -1,3 +1,9 @@
+<%-- 
+    Document   : registro
+    Created on : 18/11/2018, 12:31:02 AM
+    Author     : carlosA
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +24,7 @@
                     <label>Usuario:</label>
                     </td>
                     <td>
-                        <input type="text" name="usuario"  id="txtuserreg"  minlength="6" maxlength="16" required/>
+                    <input type="text" name="usuario" minlength="6" maxlength="16" id="txtuserreg" required/>
                     </td>
                 </tr>
                 <tr>

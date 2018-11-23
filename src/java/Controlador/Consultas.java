@@ -5,8 +5,11 @@
  */
 package Controlador;
 
+import Correo.Email;
+import Utilidades.md5;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -29,7 +32,7 @@ public class Consultas extends Conexion{
             if(rs.absolute(1)){
                 return true;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("ERROR:"+e);
         }finally{
             try {
@@ -82,7 +85,7 @@ public class Consultas extends Conexion{
         
         
         try {
-            String consulta = "select Password from sesion where EMail = ?";
+            String consulta = "select Password from sesion where NombreSesion = ?";
             pst = getConexion().prepareStatement(consulta);
             pst.setString(1,correo);
             
@@ -106,7 +109,26 @@ public class Consultas extends Conexion{
         return null;
     }
     
-    
+    public void enviar() throws Exception{
+            Email email = new Email();
+            //Consultas consulta = new Consultas();
+            
+           // String recuperarpassword = md5.Desencriptar(consulta.restaurarcorreo("carlos_19alber@hotmail.com"));
+            //String resultado = " ";
+             //out.print(resultado);
+            String de = "restaurarcontrasena123@gmail.com";
+            String clave = "ejhmrxbmzbjayssf";
+            //String para = request.getParameter("correo");
+            String para = "carlos_19alber@hotmail.com";
+            String mensaje = "Esta es tu contraseña: " + md5.Desencriptar(restaurarcorreo("coordinador"));
+            String asunto = "RESTAURAR CONTRASEÑA";
+            //out.print(resultado);
+            
+            
+            //recuperarpassword = consulta.restaurarcorreo(request.getParameter("correo"));
+            email.enviarCorreo(de, clave, para, mensaje, asunto);
+            //out.print(resultado);
+            }
     
     public static void main(String[] args) {
         Consultas co = new Consultas();
