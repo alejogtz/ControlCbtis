@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
 import Correo.Email;
@@ -11,46 +6,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author carlosA
- */
-public class Consultas extends Conexion{
-    
-    public boolean autenticacion(String usuario, String contrasena){
+public class Consultas extends Conexion {
+
+    public boolean autenticacion(String usuario, String contrasena) {
         PreparedStatement pst = null;
         ResultSet rs = null;
-        
-        
+
         try {
             String consulta = "select NombreSesion,password from sesion where NombreSesion = ? and password = ?";
             pst = getConexion().prepareStatement(consulta);
             pst.setString(1, usuario);
             pst.setString(2, contrasena);
             rs = pst.executeQuery();
-            
-            if(rs.absolute(1)){
+
+            if (rs.absolute(1)) {
                 return true;
             }
         } catch (SQLException e) {
-            System.err.println("ERROR:"+e);
-        }finally{
+            System.err.println("ERROR:" + e);
+        } finally {
             try {
-                if(getConexion() != null) getConexion().close();
-                if(pst != null) pst.close();
-                if(rs != null) rs.close();
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
             } catch (Exception e) {
-                 System.err.println("ERROR:"+e);
+                System.err.println("ERROR:" + e);
             }
         }
-        
+
         return false;
     }
-    
-    
-    public boolean registar(String usuario,String contrasena, String email){
+
+    public boolean registar(String usuario, String contrasena, String email) {
         PreparedStatement pst = null;
-        
+
         try {
             String consulta = "insert into sesion(NoRegistro, NombreSesion, Password, EMail) values(?,?,?,?)";
             pst = getConexion().prepareStatement(consulta);
@@ -58,81 +53,95 @@ public class Consultas extends Conexion{
             pst.setString(2, usuario);
             pst.setString(3, contrasena);
             pst.setString(4, email);
-            
-            if(pst.executeUpdate() == 1){
+
+            if (pst.executeUpdate() == 1) {
                 return true;
             }
-            
+
         } catch (Exception ex) {
-             System.err.println("ERROR:"+ex);
-        }finally{
+            System.err.println("ERROR:" + ex);
+        } finally {
             try {
-                if(getConexion() != null) getConexion().close();
-                if(pst != null) pst.close();
-                
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
             } catch (Exception e) {
-                 System.err.println("ERROR:"+e);
+                System.err.println("ERROR:" + e);
             }
         }
-        
-        
+
         return false;
     }
-    
-    public String restaurarcorreo(String correo){
+
+    public String restaurarcorreo(String correo) {
         PreparedStatement pst = null;
         ResultSet rs = null;
-        
-        
+
         try {
             String consulta = "select Password from sesion where NombreSesion = ?";
             pst = getConexion().prepareStatement(consulta);
-            pst.setString(1,correo);
-            
+            pst.setString(1, correo);
+
             rs = pst.executeQuery();
-            
-            if(rs.absolute(1)){
+
+            if (rs.absolute(1)) {
                 return rs.getString("Password");
             }
         } catch (Exception ex) {
-            System.err.println("ERROR:"+ex);
-        }finally{
+            System.err.println("ERROR:" + ex);
+        } finally {
             try {
-                if(getConexion() != null) getConexion().close();
-                if(pst != null) pst.close();
-                if(rs != null) rs.close();
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
             } catch (Exception e) {
-                 System.err.println("ERROR:"+e);
+                System.err.println("ERROR:" + e);
             }
         }
-        
+
         return null;
     }
-    
-    public void enviar() throws Exception{
-            Email email = new Email();
-            //Consultas consulta = new Consultas();
-            
-           // String recuperarpassword = md5.Desencriptar(consulta.restaurarcorreo("carlos_19alber@hotmail.com"));
-            //String resultado = " ";
-             //out.print(resultado);
-            String de = "restaurarcontrasena123@gmail.com";
-            String clave = "ejhmrxbmzbjayssf";
-            //String para = request.getParameter("correo");
-            String para = "carlos_19alber@hotmail.com";
-            String mensaje = "Esta es tu contraseña: " + md5.Desencriptar(restaurarcorreo("coordinador"));
-            String asunto = "RESTAURAR CONTRASEÑA";
-            //out.print(resultado);
-            
-            
-            //recuperarpassword = consulta.restaurarcorreo(request.getParameter("correo"));
-            email.enviarCorreo(de, clave, para, mensaje, asunto);
-            //out.print(resultado);
-            }
-    
+
+    public void enviar() throws Exception {
+        Email email = new Email();
+        //Consultas consulta = new Consultas();
+
+        // String recuperarpassword = md5.Desencriptar(consulta.restaurarcorreo("carlos_19alber@hotmail.com"));
+        //String resultado = " ";
+        //out.print(resultado);
+        String de = "restaurarcontrasena123@gmail.com";
+        String clave = "ejhmrxbmzbjayssf";
+        //String para = request.getParameter("correo");
+        String para = "carlos_19alber@hotmail.com";
+        String mensaje = "Esta es tu contraseña: " + md5.Desencriptar(restaurarcorreo("coordinador"));
+        String asunto = "RESTAURAR CONTRASEÑA";
+        //out.print(resultado);
+
+        //recuperarpassword = consulta.restaurarcorreo(request.getParameter("correo"));
+        email.enviarCorreo(de, clave, para, mensaje, asunto);
+        //out.print(resultado);
+    }
+
     public static void main(String[] args) {
         Consultas co = new Consultas();
+        String contrasela = md5.Encriptar("Coordinador");
+        //System.out.println(co.registar("cas", "7815696ecbf1c96e6894b779456d330e", "sda"));
+        //System.out.println(co.registar("Coordinador", contrasela, "alejo.gutierrez@itoaxaca.edu.mx"));
         
-        System.out.println(co.registar("cas", "7815696ecbf1c96e6894b779456d330e", "sda"));
+        contrasela = md5.Encriptar("Vigilante");
+        System.out.println(co.registar("Vigilante", contrasela, "alejo.gutierrez@itoaxaca.edu.mx"));
+        
+        
+        //// System.out.println( "test auntegicacion:" + new Consultas().autenticacion("Vigilante",  contrasela ) );
     }
 }

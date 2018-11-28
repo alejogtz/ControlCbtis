@@ -1,16 +1,21 @@
-<%-- 
-    Document   : registro
-    Created on : 18/11/2018, 12:31:02 AM
-    Author     : carlosA
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro</title>
-        <link rel="stylesheet" href="CSS/main.css" type="text/css"/>
+        <link rel="stylesheet" href="css/main.css" type="text/css"/>
+
+        <meta http-equiv="Cache-Control" content="no-store;no-cache">
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+            if (history.forward(1)) {
+                location.replace(history.forward(1));
+            }
+        </script>
         
         <script src="js/validacion.js"></script>
     </head>

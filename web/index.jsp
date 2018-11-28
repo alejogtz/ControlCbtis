@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 17/11/2018, 11:03:12 PM
-    Author     : carlosA
---%>
-
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="Utilidades.md5"%>
 <%@page import="Controlador.Consultas"%>
@@ -15,8 +9,9 @@
 <html xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-store; no-cache, ">
         <title>Login</title>
-        <link rel="stylesheet" href="CSS/main.css" type="text/css"/>
+        <link rel="stylesheet" href="css/main.css" type="text/css"/>
         <script src="js/main.js"></script>
         <script src="js/md5.js"></script>
     </head>

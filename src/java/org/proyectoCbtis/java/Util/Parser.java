@@ -20,11 +20,11 @@ public class Parser {
             return intValue;
         }
 
-        public static String aString(String String) {
+        public static String aString(String cadena) {
             String Value = "";
             // Logic code here
             try {
-                Value = String.valueOf(Value);
+                Value = String.valueOf(cadena);
             } catch (Exception error) {
                 System.out.println("Error Desconocido");
             }

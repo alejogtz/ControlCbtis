@@ -11,25 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-/**
- *
- * @author carlosA
- */
 @WebServlet(name = "IniciarSesion", urlPatterns = {"/Iniciar"})
 public class InicioSesion extends HttpServlet {
     
-    
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -38,10 +23,9 @@ public class InicioSesion extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String encriptado = request.getParameter("contrasena");
         
-        String contrasena;
-        contrasena = md5.Encriptar(encriptado);
-        
+        String contrasena = md5.Encriptar(encriptado);       
         Consultas co = new Consultas();
+        
         if(co.autenticacion(usuario, contrasena)){
             if("coordinador".equals(usuario)){
             HttpSession objsesion = request.getSession(true);
@@ -50,7 +34,7 @@ public class InicioSesion extends HttpServlet {
             }else {
                 HttpSession objsesion = request.getSession(true);
                 objsesion.setAttribute("usuario", usuario);
-                response.sendRedirect("vigilante.jsp");
+                response.sendRedirect("Portero.jsp");
             }
         }else{
            out.println("Invalid password <a href='index.jsp'>try again</a>");

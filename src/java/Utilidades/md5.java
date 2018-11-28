@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Utilidades;
 
-/**
- *
- * @author carlosA
- */
 import java.security.MessageDigest;
 import java.util.Arrays;
 import javax.crypto.Cipher;
@@ -19,12 +10,9 @@ import org.apache.commons.codec.binary.Base64;
 public class md5 {
  
     public static String Encriptar(String texto) {
- 
-        String secretKey = "qualityinfosolutions"; //llave para encriptar datos
+        String secretKey = "qualityinfosolutions";
         String base64EncryptedString = "";
- 
         try {
- 
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
@@ -66,4 +54,10 @@ public class md5 {
         }
         return base64EncryptedString;
     }
+
+    public static void main(String[] args) {    
+        System.out.println( md5.Encriptar("Hola") );
+
+    }
+    
 }
