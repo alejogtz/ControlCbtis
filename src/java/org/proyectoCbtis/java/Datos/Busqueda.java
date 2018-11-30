@@ -1,9 +1,12 @@
 package org.proyectoCbtis.java.Datos;
 
 import Controlador.Conexion;
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 public class Busqueda {
 
@@ -40,6 +43,25 @@ public class Busqueda {
         System.err.println(
                 new Busqueda().buscarAlumno("Alejo")
                 );
+    }
+    
+    
+    public static String deImgPerfil(int nocontrol){
+        try {
+            PreparedStatement pst
+                    = new Conexion().getConexion().prepareStatement("select foto from estudiante where nocontrol = ?");
+            pst.setInt(1, nocontrol);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) return rs.getString("foto");
+            else return "default.jpg";
+            
+               
+            
+            
+        } catch (SQLException ex) {
+
+        }
+        return null;
     }
 
 }

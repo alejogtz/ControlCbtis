@@ -4,11 +4,6 @@ import Controlador.Conexion;
 import Controlador.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +23,6 @@ public class ServletPortero extends HttpServlet {
 
         // input del nombre a buscar
         String name = DeString.aString(request.getParameter("nombre"));
-        System.err.println("=======>:" + name);
         String tablahtml = new Busqueda().buscarAlumno(name);
 
         response.setStatus(200);
@@ -45,7 +39,7 @@ public class ServletPortero extends HttpServlet {
 
         int nocontrol = DeString.aInt(request.getParameter("nocontrol"));
 
-        boolean sucess = ObjectAsistencias.insertarAsistencia(nocontrol);
+        boolean sucess = ObjectAsistencias.insertarAsistencia(nocontrol, false);
         if (sucess) {
             response.setStatus(200);
         } else {

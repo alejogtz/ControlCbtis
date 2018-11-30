@@ -1,7 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@page import="org.proyectoCbtis.java.Datos.OperacionAsistencias"%>
+<%@page import="org.proyectoCbtis.java.Util.Parser.DeString"%>
+<%@page import="org.proyectoCbtis.java.Datos.Busqueda"%>
+<%@page import="java.io.PrintWriter"%>
 
-<%
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%--
     try {
         HttpSession objsesion = request.getSession(false);
         String usuario = (String) objsesion.getAttribute("usuario");
@@ -13,54 +17,80 @@
         response.sendRedirect("index.jsp");
     }
 
-%>
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Portero - Menu</title>
+        <title>Portero - Registrar Asistencia</title>
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/Normalize.css">
         <meta charset="UTF-8">
-        
-        <meta http-equiv="Cache-Control" content="no-store;no-cache">
-        <meta http-equiv="Expires" content="0" >
-        <meta http-equiv="Pragma" content="no-cache" >
-        
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript">
-            if (history.forward(1)) {
-                location.replace(history.forward(1));
-            }
+
+
+        <script>
+            window.addEventListener("pageshow", function (event) {
+                var historyTraversal = event.persisted ||
+                        (typeof window.performance != "undefined" &&
+                                window.performance.navigation.type === 2);
+                if (historyTraversal) {
+                    // Handle page restore.                    
+                    window.location.reload();
+                }
+            });
         </script>
+
+
     </head>
 
 
-
     <body id="body">
-
         <img id="logo"  src="img/page_1.jpg">
 
+
         <div id="contenedor">
-
-            <!--
-            <div id="cerrar_sesion">
-                <button  id="button-salir" name="button-salir" value="boton SALIR">Cerrar Sesión</button>
-            </div>-->
             <a href="CerrarSesion">Logout</a>
+            <h2 id="h2">REGISTRO DE ASISTENCIAS</h2>
 
 
-            <h2 id="h2">REGISTRO DE ASISTENCIAS</h2>	
-
-           
-            <form id="registrar-asistencia">
+            <form id="registrar-asistencia" method="post">
                 <div id="no_control">
                     <label for="input-nocontrol">Numero de Control: </label>
                     <input type="number" id="input-nocontrol" name="input-nocontrol" 
                            value="" placeholder="Esperando Numero..." />
-                    <input type="submit" id="button-registrar" name="button-registrar" value="Registrar"/>
+
+                    <fieldset>
+                        <legend>Tipo de entrada</legend>
+                        <label><input type="radio" name="modo-entrada" value="normal" checked="checked">Normal</label>
+                        <label><input type="radio" name="modo-entrada" value="incidencia">Incidencia</label>
+                    </fieldset>
+
+                    <input type="submit" id="button-registrar" name="submit-button" value="Registrar"/>
                 </div>
             </form>
-            
+
+
+            <div>
+                <%                    
+                    if (request.getParameter("input-nocontrol") != null && !request.getParameter("input-nocontrol").equals("")) {
+                        boolean incidencia = request.getParameter("modo-entrada").equals("incidencia");
+                        int nocontrol = DeString.aInt(request.getParameter("input-nocontrol"));
+                        OperacionAsistencias obj = new OperacionAsistencias();                        
+                        
+                        
+                        boolean sucess = obj.insertarAsistencia(nocontrol, incidencia);
+                        
+                        
+                        if (sucess) {
+                            out.println(" <img src=\"images/fotosalumno/" + Busqueda.deImgPerfil(nocontrol) + "\" height=\"200px\" width=\"200px\">  ");
+                        } else {
+                            out.println(" <img src=\"images/fotosalumno/default.jpg\" height=\"200px\" width=\"200px\">  ");
+                        }
+
+                    }
+                %>
+            </div>
+
 
 
             <div id="botonsubmit">
@@ -68,13 +98,10 @@
             </div>
 
 
-            <div id="div-advertir-registro" ><!--style="background-color: green;"-->
-                <p id="status-registro">
-
-                <p>
+            <div id="div-advertir-registro" >
+                <p id="status-registro"><p>
             </div>
-            
-            
+
 
             <div id="contenedor_buscar">
                 <div id="buscar_por_nombre">
@@ -89,7 +116,6 @@
 
 
                 <div id="tabla"></div>
-
                 <script type="text/javascript">
                     document.getElementById('button-buscar').addEventListener('click', cargarAlumno);
 
@@ -101,26 +127,34 @@
                         if (isValid(nocontrol) && event.KeyCode === 13) {
                             xhr.open('POST', 'ServletPortero', true);
                             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+
                             xhr.onload = function () {
                                 console.log(this.responseText);
                             };
+
+
                             xhr.onerror = function () {
                                 console.log('Request Error...');
                             };
+
+
                             xhr.send(params);
                         }
                     };
                 </script>
             </div>
 
+
             <script type="text/javascript">
-                console.log("Ejecutando...");
                 var div_buscar_oculto = true;
+
+
                 document.getElementById("button-manual").addEventListener('click', mostrarDivBusqueda, false);
                 document.getElementById('contenedor_buscar').style.display = 'none';
 
+
                 function mostrarDivBusqueda() {
-                    console.log("..........");
                     if (div_buscar_oculto) {
                         document.getElementById('contenedor_buscar').style.display = 'block';
                         console.log("Mostrar");
@@ -135,28 +169,34 @@
 
                 document.getElementById("button-buscar").addEventListener('click', cargarInformacion);
 
+
                 function cargarInformacion() {
-                    console.log("Buscando......");
-                    var _get = new XMLHttpRequest();
                     var nombre = document.getElementById("input-text").value;
+
+
+                    var _get = new XMLHttpRequest();
                     _get.open('GET', "ServletPortero?nombre=" + nombre + "&nrs=" + Math.random(), true);
+
+
                     _get.onload = function () {
                         console.log(this.responseText);
                         if (this.status == 200) {
                             document.getElementById("tabla").innerHTML = this.responseText;
                         }
                     };
+
+
                     _get.send();
 
                 }
                 ;
-
             </script>
+
 
         </div>
 
         <!-- Load Script Files --> 
-        <script src="js/RequestAsistencias.js"></script>
+        <!-- <script src="js/InsertarAsistencia.js"></script>  --> 
 
     </body>
 </html>

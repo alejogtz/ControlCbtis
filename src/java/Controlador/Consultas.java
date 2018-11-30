@@ -137,11 +137,10 @@ public class Consultas extends Conexion {
         String contrasela = md5.Encriptar("Coordinador");
         //System.out.println(co.registar("cas", "7815696ecbf1c96e6894b779456d330e", "sda"));
         //System.out.println(co.registar("Coordinador", contrasela, "alejo.gutierrez@itoaxaca.edu.mx"));
-        
+
         contrasela = md5.Encriptar("Vigilante");
         System.out.println(co.registar("Vigilante", contrasela, "alejo.gutierrez@itoaxaca.edu.mx"));
-        
-        
+
         //// System.out.println( "test auntegicacion:" + new Consultas().autenticacion("Vigilante",  contrasela ) );
     }
 }
