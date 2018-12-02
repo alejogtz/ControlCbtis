@@ -8,23 +8,27 @@ formularioPost.addEventListener("submit", post);
 
 function post(event) {
     // Anular la redireccion de la pagina
-    event.preventDefault();
-    
+    event.preventDefault(); 
     
     var nocontrol = document.getElementById("input-nocontrol").value;
-    var params = "nocontrol=" + nocontrol;    
+    var params = "nocontrol=" + nocontrol;
+    
+    
     var xhr = new XMLHttpRequest();
-	
-        
     xhr.open('POST', 'ServletPortero', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     
     
     xhr.onload = function () {
-        var mensaje = document.getElementById("status-registro");        
+        var mensaje = document.getElementById("status-registro");
+        var imagen = document.getElementById("img-alumno");
+        
         if (this.status === 200 ){
             mensaje.style.backgroundColor = 'green';
-            mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " ingresado correctamente;"            
+            mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " ingresado correctamente;"
+            imagen.innerHTML = "<img src=\"images/" + this.responseText +"\">"
+            
+            
         }else{ 
             mensaje.style.backgroundColor = 'red';
             mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " No fue agregado;"

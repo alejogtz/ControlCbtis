@@ -6,8 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Consultas extends Conexion {
+public class Consultas extends Conexion{
 
+    public Consultas() throws com.mysql.jdbc.exceptions.jdbc4.CommunicationsException{}
+    
+    public static void main(String [] args){
+       
+        
+    }
+    
+    
     public boolean autenticacion(String usuario, String contrasena) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -22,8 +30,14 @@ public class Consultas extends Conexion {
             if (rs.absolute(1)) {
                 return true;
             }
+            
+            
         } catch (SQLException e) {
+            
+            
             System.err.println("ERROR:" + e);
+            
+            
         } finally {
             try {
                 if (getConexion() != null) {
@@ -43,10 +57,13 @@ public class Consultas extends Conexion {
         return false;
     }
 
+    
     public boolean registar(String usuario, String contrasena, String email) {
         PreparedStatement pst = null;
 
         try {
+            
+            
             String consulta = "insert into sesion(NoRegistro, NombreSesion, Password, EMail) values(?,?,?,?)";
             pst = getConexion().prepareStatement(consulta);
             pst.setInt(1, 0);
@@ -58,8 +75,11 @@ public class Consultas extends Conexion {
                 return true;
             }
 
+            
         } catch (Exception ex) {
             System.err.println("ERROR:" + ex);
+            
+            
         } finally {
             try {
                 if (getConexion() != null) {
@@ -68,7 +88,6 @@ public class Consultas extends Conexion {
                 if (pst != null) {
                     pst.close();
                 }
-
             } catch (Exception e) {
                 System.err.println("ERROR:" + e);
             }
@@ -77,6 +96,7 @@ public class Consultas extends Conexion {
         return false;
     }
 
+    
     public String restaurarcorreo(String correo) {
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -112,6 +132,7 @@ public class Consultas extends Conexion {
         return null;
     }
 
+    
     public void enviar() throws Exception {
         Email email = new Email();
         //Consultas consulta = new Consultas();
@@ -132,15 +153,77 @@ public class Consultas extends Conexion {
         //out.print(resultado);
     }
 
-    public static void main(String[] args) {
-        Consultas co = new Consultas();
-        String contrasela = md5.Encriptar("Coordinador");
-        //System.out.println(co.registar("cas", "7815696ecbf1c96e6894b779456d330e", "sda"));
-        //System.out.println(co.registar("Coordinador", contrasela, "alejo.gutierrez@itoaxaca.edu.mx"));
+    
+    public boolean CambiarContrasena(String Nuevacontrasena) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        //boolean bandera = false;
+        try {
 
-        contrasela = md5.Encriptar("Vigilante");
-        System.out.println(co.registar("Vigilante", contrasela, "alejo.gutierrez@itoaxaca.edu.mx"));
+            String consulta = "UPDATE sesion SET Password = ?  WHERE NombreSesion = 'coordinador'";
+            pst = getConexion().prepareStatement(consulta);
+            pst.setString(1, Nuevacontrasena);
+            //pst.executeUpdate();
 
-        //// System.out.println( "test auntegicacion:" + new Consultas().autenticacion("Vigilante",  contrasela ) );
+            if (pst.executeUpdate() > 0) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("ERROR:" + e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR:" + e);
+            }
+        }
+
+        return false;
+    }
+    // ///////////////////////////////
+
+    
+    public boolean comprobar(int id) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select e.NoControl, e.Nombre, e.ApPaterno, e.ApMaterno, e.Semestre, e.Especialidad, e.Grupo, e.Turno, a.Fecha, a.Hora from Estudiante e inner join Asistencia a on e.NoControl = a.NoControl where e.NoControl = ?";
+            pst = getConexion().prepareStatement(consulta);
+            pst.setInt(1, id);
+
+            rs = pst.executeQuery();
+
+            if (rs.absolute(1)) {
+                return true;
+            }
+        } catch (Exception ex) {
+            System.err.println("ERROR:" + ex);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR:" + e);
+            }
+        }
+
+        return false;
     }
 }

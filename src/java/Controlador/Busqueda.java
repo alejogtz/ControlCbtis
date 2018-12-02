@@ -1,4 +1,4 @@
-package org.proyectoCbtis.java.Datos;
+package Controlador;
 
 import Controlador.Conexion;
 

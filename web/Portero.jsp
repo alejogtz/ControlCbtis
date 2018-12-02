@@ -1,23 +1,10 @@
-<%@page import="org.proyectoCbtis.java.Datos.OperacionAsistencias"%>
-<%@page import="org.proyectoCbtis.java.Util.Parser.DeString"%>
-<%@page import="org.proyectoCbtis.java.Datos.Busqueda"%>
+<%@page import="Controlador.OperacionAsistencias"%>
+<%@page import="Utilidades.Parser.DeString"%>
+<%@page import="Controlador.Busqueda"%>
+<%@page import="Utilidades.Console"%>
 <%@page import="java.io.PrintWriter"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%--
-    try {
-        HttpSession objsesion = request.getSession(false);
-        String usuario = (String) objsesion.getAttribute("usuario");
-
-        if (usuario.equals("")) {
-            response.sendRedirect("iniciar");
-        }
-    } catch (NullPointerException e) {
-        response.sendRedirect("index.jsp");
-    }
-
---%>
 
 <!DOCTYPE html>
 <html>
@@ -70,26 +57,7 @@
             </form>
 
 
-            <div>
-                <%                    
-                    if (request.getParameter("input-nocontrol") != null && !request.getParameter("input-nocontrol").equals("")) {
-                        boolean incidencia = request.getParameter("modo-entrada").equals("incidencia");
-                        int nocontrol = DeString.aInt(request.getParameter("input-nocontrol"));
-                        OperacionAsistencias obj = new OperacionAsistencias();                        
-                        
-                        
-                        boolean sucess = obj.insertarAsistencia(nocontrol, incidencia);
-                        
-                        
-                        if (sucess) {
-                            out.println(" <img src=\"images/fotosalumno/" + Busqueda.deImgPerfil(nocontrol) + "\" height=\"200px\" width=\"200px\">  ");
-                        } else {
-                            out.println(" <img src=\"images/fotosalumno/default.jpg\" height=\"200px\" width=\"200px\">  ");
-                        }
-
-                    }
-                %>
-            </div>
+            <div id="img-alumno"> </div>
 
 
 
@@ -196,7 +164,7 @@
         </div>
 
         <!-- Load Script Files --> 
-        <!-- <script src="js/InsertarAsistencia.js"></script>  --> 
+        <script src="js/InsertarAsistencia.js"></script> 
 
     </body>
 </html>

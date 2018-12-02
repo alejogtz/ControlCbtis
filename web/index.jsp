@@ -7,7 +7,7 @@
 
 
 <!DOCTYPE html>
-<html xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html>
     <head>
         <title>Login</title>
         <link rel="stylesheet" href="css/main.css" type="text/css"/>

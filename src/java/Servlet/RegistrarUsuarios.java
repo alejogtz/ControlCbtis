@@ -7,8 +7,11 @@ package Servlet;
 
 import Controlador.Consultas;
 import Utilidades.md5;
+import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,35 +23,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RegistrarUsuarios extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            
             String usuario = request.getParameter("usuario");
-           // String contra = request.getParameter("contrasena");
+            // String contra = request.getParameter("contrasena");
             //String contrasena = request.getParameter("encriptadoregistar");
             
             String contrasena = md5.Encriptar(request.getParameter("contrasena"));
             String Email = request.getParameter("Email");
             
             
-             Consultas co = new Consultas();
-             //co.registar(usuario, contrasena, Email);
-             
-                if(co.registar(usuario, contrasena, Email)){
+            Consultas co = new Consultas();
+            //co.registar(usuario, contrasena, Email);
+            
+            if(co.registar(usuario, contrasena, Email)){
                 response.sendRedirect("index.jsp");
-                }else{
+            }else{
                 response.sendRedirect("registro.jsp");
+            }
+        } catch (CommunicationsException ex) {
+            response.sendRedirect("ErrorPages/ErrorDeConexionBD.html");
         }
         
     }

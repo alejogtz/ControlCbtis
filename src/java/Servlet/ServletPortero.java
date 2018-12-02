@@ -1,4 +1,4 @@
-package org.proyectoCbtis.java.Servlets;
+package Servlet;
 
 import Controlador.Conexion;
 import Controlador.Consultas;
@@ -9,8 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.proyectoCbtis.java.Datos.Busqueda;
-import org.proyectoCbtis.java.Util.Parser.DeString;
+import Controlador.Busqueda;
+import Utilidades.Console;
+import Utilidades.Parser.DeString;
 
 @WebServlet(name = "ServletPortero", urlPatterns = {"/ServletPortero"})
 public class ServletPortero extends HttpServlet {
@@ -35,13 +36,17 @@ public class ServletPortero extends HttpServlet {
         PrintWriter out = response.getWriter();
         // Registrar Asistencia
         // Primero capturamo el valor del no de control
-        org.proyectoCbtis.java.Datos.OperacionAsistencias ObjectAsistencias = new org.proyectoCbtis.java.Datos.OperacionAsistencias();
+        Controlador.OperacionAsistencias ObjectAsistencias = new Controlador.OperacionAsistencias();
 
         int nocontrol = DeString.aInt(request.getParameter("nocontrol"));
 
         boolean sucess = ObjectAsistencias.insertarAsistencia(nocontrol, false);
+        
+        Console.println("Servlet Portero - Insertar Alumno", sucess + "");
         if (sucess) {
             response.setStatus(200);
+            out.println("<img src=\"images/\"  >");
+            
         } else {
             response.sendError(404, "Error en la insercion de la asistencia");
         }
