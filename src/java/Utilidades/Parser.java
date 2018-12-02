@@ -15,7 +15,7 @@ public class Parser {
             try {
                 intValue = Integer.parseInt(value);
             } catch (Exception error) {
-                System.out.println("Error Desconocido");
+                Console.println("DeString a Int", "Error de Parseo: " + value);
             }
             return intValue;
         }
@@ -26,7 +26,7 @@ public class Parser {
             try {
                 Value = String.valueOf(cadena);
             } catch (Exception error) {
-                System.out.println("Error Desconocido");
+                Console.println("DeString a String", "Error de Parseo: " + cadena);
             }
             return Value;
         }
