@@ -39,6 +39,8 @@ public class ServletPortero extends HttpServlet {
         Controlador.OperacionAsistencias ObjectAsistencias = new Controlador.OperacionAsistencias();
 
         int nocontrol = DeString.aInt(request.getParameter("nocontrol"));
+        boolean incidencia = DeString.aBoolean(request.getParameter("incidencia"));
+        
 
         boolean sucess = ObjectAsistencias.insertarAsistencia(nocontrol, false);
         
