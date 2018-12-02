@@ -21,12 +21,12 @@ function post(event) {
     
     xhr.onload = function () {
         var mensaje = document.getElementById("status-registro");
-        var imagen = document.getElementById("img-alumno");
+        var imagen = document.getElementById("img-alumno-img");
         
         if (this.status === 200 ){
             mensaje.style.backgroundColor = 'green';
             mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " ingresado correctamente;"
-            imagen.innerHTML = "<img src=\"images/" + this.responseText +"\">"
+            imagen.src = this.responseText;
             
             
         }else{ 
