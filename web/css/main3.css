@@ -1,0 +1,60 @@
+#contenedor{
+    background-color: whitesmoke;
+    margin-top: 0%;
+    padding-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 10%;
+    border-radius-buttom: 10px;
+ 
+}
+#body{
+	background-image: url("../images/fondo.png");
+    margin-top: 0px;
+    height: 350px;
+    background-size: cover;  
+}
+ 
+  
+#logo{
+    margin-left: 10%;
+    margin-right: 10%;    
+    height:80%;
+  	width: 80%;
+    border-style: groove; 
+    box-shadow: -1px 7px 40px 6px rgb(167, 148, 128);
+    
+    position: fixed absolute;    
+    
+}
+#log{
+
+  width: 10%;
+  float: center;
+  margin-top:1%;
+  margin-bottom: 1%;
+  margin-right:0%;
+  margin-left: 45%;
+  position: center;  
+    
+}
+
+ #h2{
+    text-transform: uppercase;
+    color: #2269b9;    
+    font-style: bold ;  
+    text-align: center;
+    letter-spacing: 4px;
+    font-size: 25px;
+    margin:0%;
+ }
+ #h2-{
+    text-transform: uppercase;
+    color: #2269b9;    
+    font-style: bold ;  
+    text-align: center;
+    letter-spacing: 4px;
+    font-size: 25px;
+    margin-top:18%;
+ }
+ 
