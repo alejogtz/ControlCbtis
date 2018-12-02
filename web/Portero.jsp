@@ -57,7 +57,9 @@
             </form>
 
 
-            <div id="img-alumno"> </div>
+            <div id="img-alumno">
+                <img id="img-alumno-img" src="images/fotosalumno/default.jpg" alt="Imagendelalumno" height="150px" width="150px"/>
+            </div>
 
 
 

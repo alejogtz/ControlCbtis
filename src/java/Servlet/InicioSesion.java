@@ -43,7 +43,7 @@ public class InicioSesion extends HttpServlet {
                     HttpSession objsesion = request.getSession(true);
                     objsesion.setAttribute("usuario", usuario);
                     objsesion.setAttribute("relativeIndex", "Coordinadora.jsp");                    
-                    response.sendRedirect("coordinadora.jsp");
+                    response.sendRedirect("Coordinadora.jsp");
                 } else {
                     HttpSession objsesion = request.getSession(true);
                     objsesion.setAttribute("usuario", usuario);
