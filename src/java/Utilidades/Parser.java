@@ -40,7 +40,9 @@ public class Parser {
         }
 
         public static boolean aBoolean(String parameter) {
-            
+            Boolean parsed = Boolean.parseBoolean(parameter);
+            return parsed;
+                    
         }
     }
 

@@ -31,6 +31,27 @@ public class OperacionAsistencias {
 
         return false;
     }
+    
+    
+    public String getUrlImg(int NoControl){
+        String query = "SELECT foto FROM estudiante WHERE nocontrol = ?";
+        try {
+            Connection con = new Conexion().getConexion();
+            PreparedStatement execQuery = null;
+            
+            execQuery = con.prepareStatement(query);
+            
+            execQuery.setInt(1, NoControl);
+            
+            
+            
+        } catch (SQLException | NullPointerException ex) {
+            
+        }
+                
+        
+        return "";
+    }
 
     public static void main(String[] ar) {
         new OperacionAsistencias().insertarAsistencia(15161306, false);
