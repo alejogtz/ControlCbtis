@@ -13,14 +13,13 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Alessio
- */
+
+@WebServlet(name = "CerrarSesion", urlPatterns = {"/CambiarContrasena"})
 public class CambiarContrasena extends HttpServlet {
 
     @Override
@@ -35,7 +34,7 @@ public class CambiarContrasena extends HttpServlet {
             try {
                 Consultas co = new Consultas();
                 if (co.CambiarContrasena(md5.Encriptar(contrasena))) {
-                    response.sendRedirect("coordinadora.jsp");
+                    response.sendRedirect("Coordinadora.jsp");
                     //response.sendRedirect("NuevaContrasena.jsp");
                     //response.getWriter().print("exito");
                     //out.print("exito");
