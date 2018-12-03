@@ -61,10 +61,15 @@ function borrarError(){
 }
 
 function solonumeros(e){
-    key=e.keyCode || e.which;
+    var key = e.charCode;
+    if (
+            (key >= 48 && key <= 57 ) ||
+             key === 0 ) {}
+    else {e.preventDefault();}
+    /*key=e.keyCode || e.which;
     teclado = String.fromCharCode(key);
     numero="0123456789";
-    especiales="8-37-38-46";
+    especiales="8-37-38-46-0";
     teclado_especial=false;
 
     for(var i in especiales){
@@ -76,7 +81,7 @@ function solonumeros(e){
     if(numero.indexOf(teclado) === -1 && !teclado_especial){
         return false;
         
-    }
+    }*/
 }
 
 

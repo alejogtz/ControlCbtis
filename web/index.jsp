@@ -42,24 +42,19 @@
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit" value="Iniciar Sesion" id="btniniciar">ACCEDER</button>
                         </div>
-                        <div id="botonrecuperar">
-                            <form action="Enviarcorreo" method="post" >
-                                <input class="btn btn-primary btn-block" type="submit" value="Recuperar contraseña" id="btncorreo" />
-                            </form>
-                        </div>
+                        
                     </div>
                 </div>
             </form>
-
-        </div>	
-        <script type="text/javascript">
             
-            window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-}, 4000);
-        </script>
+            <div style=" margin-left:  70% ; margin-top: 20%" id="botonrecuperar">
+                            <form action="Enviarcorreo" method="post" >
+                                <input style="width: 60% ; left: 30%" class="btn btn-primary btn-block" type="submit" value="Recuperar contraseña" id="btncorreo" />
+                            </form>
+                        </div>
+
+             </div>	
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
