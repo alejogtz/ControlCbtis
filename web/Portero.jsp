@@ -14,7 +14,7 @@
 
     <body id="body">
         <div>
-            <img id="log"  src="images/page_1.jpg">
+            <img id="logo"  src="images/page_1.jpg">
         </div>        
         <!-- *****************************************************< Begin Nav >***************************************************************** -->
 
@@ -44,16 +44,16 @@
 
 
             <div  class="escanear">
-                <form  id="registrar-asistencia" method="POST">
+                <form  id="registrar-asistencia" method="POST" autocomplete="off">
 
                     <div class="form">
                         <label class="form-group">Número de control: </label>	
                         <div class="form-group">
-                            <input class="form-control" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando número de control. . .">
+                            <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando número de control. . ." autocomplete="off">
                             <button class="btn btn-black btn-block" type="submit">Registrar</button>
                         </div><br>
                         <div class="radio-group "> 
-                            <input type="radio" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one">Normal</label>
+                            <input type="radio" checked="checked" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one">Normal</label>
                             <input type="radio" id="option-two" value="1" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-two">Incidencia</label>
                         </div><br>
                     </div>
@@ -63,6 +63,7 @@
                 <div class="alert alert-success" id="aviso" style="display: none">
                     <!--<strong>Success!</strong> Indicates a successful or positive action.-->
                 </div>
+                <img src="" height="150px" width="150px" id="img-alumno-img" style="display:none">
                 <!--
                 <div class="alert alert-info" id="aviso-info" style="display: none">
                     <strong>Info!</strong> Indicates a neutral informative change or action

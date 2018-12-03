@@ -54,5 +54,6 @@ function post(event) {
 };
 
 function loadValueFromRadio(entrada){
+    console.log("........", entrada, ".................");
     opcionRadio = entrada;
 }

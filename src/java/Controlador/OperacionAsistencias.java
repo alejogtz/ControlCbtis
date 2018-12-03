@@ -37,7 +37,7 @@ public class OperacionAsistencias {
             execQuery.setBoolean(2, incidencia);
             int sucess = execQuery.executeUpdate();
             execQuery.close();
-            Console.println("Operacion Asistencia - exe", sucess + "");
+            Console.println("[40]Operacion Asistencia - exe", sucess + "");
                    
             return sucess == 1;
         } catch (SQLException | NullPointerException ex) {
@@ -64,7 +64,7 @@ public class OperacionAsistencias {
             Console.println("Operacion Asistencia", urlimagen);
 
         } catch (SQLException | NullPointerException ex) {
-            Console.println("Operacion Asistencia", ex.getMessage());
+            Console.println("[67] Exception: Operacion Asistencia", ex.getMessage());
         }
 
         return urlimagen;
