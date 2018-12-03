@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +52,15 @@ public class InicioSesion extends HttpServlet {
                     response.sendRedirect("Portero.jsp");
                 }
             } else {
-                out.println("Invalid password <a href='index.jsp'>try again</a>");
+              
+              out.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
+                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+                "<strong>Alerta!</strong> La contraseña es incorrecta."+ 
+                "</div> ");
+             
+             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");  
+             
+                rd.include(request,response); 
             }
         } catch (CommunicationsException ex) {
             response.sendRedirect("ErrorPages/ErrorDeConexionBD.html");
