@@ -38,6 +38,7 @@ public class Parser {
             return false;
         }
 
+
         public static boolean aBoolean(String parameter) {
             
             Console.println("Parse to Boolean", parameter);
@@ -46,6 +47,7 @@ public class Parser {
                     
         }
     }
+
 
     public static class DeObject {
 
@@ -62,4 +64,5 @@ public class Parser {
     }
 
 
-}
+    }
+
