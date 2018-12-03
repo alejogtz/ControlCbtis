@@ -11,66 +11,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Incidencia</title>
-    <link rel="stylesheet" href="css/main.css">
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/main3.css">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <!-- <script src="js/validacionCoordinadora.js"></script> -->
+  
 </head>
 
 <body id="body">
-    <img id="logo" src="images/page_1.jpg">
+    <div>
+    <img id="logo"   src="images/page_1.jpg">
+    </div>
+    
+    <nav  class="navbar navbar-expand-lg navbar-dark " style="width:80% ;margin-bottom: 0%; left:10%; background-color: #1A5276">
+            <a class="navbar-brand" href="Coordinadora.jsp">Principal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+             <ul class="navbar-nav">
+                 <li class="nav-item active">
+                    <a class="nav-link" class="active" href="#">Incidencias <span class="sr-only">(current)</span></a>
+                 </li>
+                 <li class="nav-item">
+                 <a class="nav-link" href="NuevaContrasena.jsp">Cambiar Contraseña</a>
+                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="CerrarSesion">Cerrar Sesión</a>
+                 </li>
+                </ul>
+            </div>
+            </nav>
     <div id="contenedor">
 
 
-        <div id="cerrar_sesion">
-            <ul>
-                <li><a href="/NuevaContrasena.jsp">Cambiar Contraseña</a></li>
-                <li><a href="/Incidencia.jsp">Incidencia</a></li>
-                <li><a href="CerrarSesion">Logout</a></li>
-            </ul>
-        </div>
+        
 
+        
+        
+<%@page import="java.sql.*" %>
+        <%
+
+Class.forName("com.mysql.jdbc.Driver");
+Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "chivas1958");
+
+Statement Estamento = conexion.createStatement();
+ResultSet rs = Estamento.executeQuery(""
+        + "select e.NoControl, e.Nombre, e.ApPaterno, e.ApMaterno, a.Fecha from Estudiante e inner join Asistencia a on e.NoControl = a.NoControl where a.incidencia = 1");%>
+        
 
         <h2 id="h2">Tabla de Incidencias</h2>
         <div class="container">
-  <h2>Filterable Table</h2>
-  <p>Type something in the input field to search the table for first names, last names or emails:</p>  
-  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <input style="width:94%" maxlength="20" class="form-control" id="myInput" type="text" placeholder="Search..">
   <br>
-  <table class="table table-bordered table-striped">
+  <table style="width:94%" class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th>No. De Control</th>
+        <th>Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Fecha de Incidencia</th>
       </tr>
     </thead>
     <tbody id="myTable">
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@mail.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@greatstuff.com</td>
-      </tr>
-      <tr>
-        <td>Anja</td>
-        <td>Ravendale</td>
-        <td>a_r@test.com</td>
-      </tr>
+        <% while (rs.next()) { 
+            out.println("<tr>");
+
+            out.println("<td>");
+
+            out.println(rs.getInt("e.NoControl"));
+
+            out.println("</td><td>");
+            
+            out.println(rs.getString("e.Nombre"));
+
+            out.println("</td><td>");
+            
+            out.println(rs.getString("e.ApPaterno"));
+            
+            out.println("</td><td>");
+            
+            out.println(rs.getString("e.ApMaterno"));
+            
+            out.println("</td><td>");
+
+            out.println(rs.getDate("a.Fecha"));
+
+            out.println("</td>");
+
+            out.println("</tr>");
+        }%>
+     
     </tbody>
   </table>
   
-
+</div>
         
     </div>
         
