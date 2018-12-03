@@ -1,0 +1,16 @@
+-Validacion campo vacio a NoControl
+-Agregar más informe de error al insertar Asistencia
+-Valida que no se inserte más de dos veces en el mismo dia
+
+-Cambiar la contraseña de Portero y Coordinador
+-Diseño de la imagen del alumno
+-Cambiar dinamica al mostrar la imagen** (Tal vez una opcion de revertir la accion)
+
+-Incidencia, agregar opcion de reportar o algo asi
+-que muestre la lista de alumnos y su 
+
+-Boton de registrar *
+
+
+590122gova
+-Dinamica para cambiar contraseñas
