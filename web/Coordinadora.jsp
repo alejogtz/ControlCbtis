@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+  /*  try{
+    HttpSession objsesion = request.getSession(false);
+    String usuario = (String)objsesion.getAttribute("usuario");
+    
+      if(usuario.equals("")){
+       response.sendRedirect("index.jsp");
+      }
+    }catch(NullPointerException e){
+    response.sendRedirect("index.jsp");
+    }*/
+    //    //
+
+%>
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +32,8 @@
 
         <div id="cerrar_sesion">
             <ul>
-                <li><a href="#contact">Reestablecer Contraseña</a></li>
+                <li><a href="/NuevaContrasena.jsp">Cambiar Contraseña</a></li>
+                <li><a href="/Incidencia.jsp">Incidencia</a></li>
                 <li><a href="CerrarSesion">Logout</a></li>
             </ul>
         </div>
@@ -42,5 +57,6 @@
         
     </div>
 </body>
+
 
 </html>
