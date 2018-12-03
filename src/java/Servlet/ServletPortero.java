@@ -39,6 +39,8 @@ public class ServletPortero extends HttpServlet {
         int nocontrol = DeString.aInt(request.getParameter("nocontrol"));
         boolean incidencia = DeString.aBoolean(request.getParameter("incidencia"));
 
+        Console.println("Servlet Portero----Incidencia", incidencia + "");
+        
         OperacionAsistencias ObjectAsistencias = new OperacionAsistencias();
 
         if (nocontrol != 0) {
