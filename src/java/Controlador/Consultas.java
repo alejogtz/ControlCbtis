@@ -160,7 +160,7 @@ public class Consultas extends Conexion{
         //boolean bandera = false;
         try {
 
-            String consulta = "UPDATE sesion SET Password = ?  WHERE NombreSesion = 'coordinador'";
+            String consulta = "UPDATE sesion SET Password = ?  WHERE NombreSesion = 'Coordinador'";
             pst = getConexion().prepareStatement(consulta);
             pst.setString(1, Nuevacontrasena);
             //pst.executeUpdate();
