@@ -31,12 +31,14 @@ function post(event) {
         if (this.status === 200) {            
             mensaje.className = "alert alert-success";
             mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " ingresado correctamente;"
+            imagen.style.display = "block";
             imagen.src = this.responseText;
 
 
         } else {
             mensaje.className = "alert alert-danger";
             mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " No fue agregado;"
+            imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
         }
         inputName.focus();
