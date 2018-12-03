@@ -30,6 +30,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 
 @WebServlet(name = "pdf", urlPatterns = {"/pdf"})
 public class pdf extends HttpServlet {
@@ -50,7 +51,7 @@ public class pdf extends HttpServlet {
                 Conexion con = new Conexion();
                 PreparedStatement pst = null;
                 ResultSet rs = null;
-
+                
                 String consulta = "select e.NoControl, e.Nombre, e.ApPaterno, e.ApMaterno, e.Semestre, e.Especialidad, e.Grupo, e.Turno, a.Fecha, a.Hora from Estudiante e inner join Asistencia a on e.NoControl = a.NoControl where e.NoControl = ?";
                 // String consulta = "select * from Estudiante where NoControl = ?";                  
                 pst = con.getConexion().prepareStatement(consulta);
@@ -161,16 +162,48 @@ public class pdf extends HttpServlet {
                         documento.close();
 
                     } catch (DocumentException ex) {
-                        ex.getMessage();
+                        response.setContentType("text/html;charset=UTF-8");
+                     PrintWriter outs;
+                    outs = response.getWriter();
+                    outs.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
+                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+                "<strong>Alerta!</strong> La contraseña es incorrecta."+ 
+                "</div> ");
+             
+                RequestDispatcher rd=request.getRequestDispatcher("/Coordinadora.jsp");  
+             
+                rd.include(request,response);
                     }
 
-                }
+                }else {
+                    response.setContentType("text/html;charset=UTF-8");
+                     PrintWriter outs;
+                    outs = response.getWriter();
+                    outs.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
+                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+                "<strong>Alerta!</strong> La contraseña es incorrecta."+ 
+                "</div> ");
+             
+                RequestDispatcher rd=request.getRequestDispatcher("/Coordinadora.jsp");  
+             
+                rd.include(request,response); 
+            }
             } catch (SQLException e) {
-                e.getMessage();
+                response.setContentType("text/html;charset=UTF-8");
+                     PrintWriter outs;
+                    outs = response.getWriter();
+                    outs.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
+                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+                "<strong>Alerta!</strong> La contraseña es incorrecta."+ 
+                "</div> ");
+             
+                RequestDispatcher rd=request.getRequestDispatcher("/Coordinadora.jsp");  
+             
+                rd.include(request,response);
             }
 
         } finally {
-            out.close();
+           out.close();
         }
 
     }

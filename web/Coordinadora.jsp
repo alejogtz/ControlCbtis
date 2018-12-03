@@ -44,7 +44,7 @@
                     <div class="form">	
                     <label for="input-number" class="form-group">Número de control: </label>	
                             <div  class="form-group">
-                                <input class="form-control" type="text" value="" name="txtId" placeholder="Esperando número de control. . .">
+                                <input class="form-control" type="text" value="" name="txtId"minlength="6" maxlength="9" placeholder="Esperando Numero..." onkeypress="return solonumeros(event)">
                             </div>
                     <br>
                     <div class="form-group aju">
