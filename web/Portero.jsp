@@ -1,172 +1,166 @@
-<%@page import="Controlador.OperacionAsistencias"%>
-<%@page import="Utilidades.Parser.DeString"%>
-<%@page import="Controlador.Busqueda"%>
-<%@page import="Utilidades.Console"%>
-<%@page import="java.io.PrintWriter"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Portero - Registrar Asistencia</title>
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/Normalize.css">
         <meta charset="UTF-8">
-
-
-        <script>
-            window.addEventListener("pageshow", function (event) {
-                var historyTraversal = event.persisted ||
-                        (typeof window.performance != "undefined" &&
-                                window.performance.navigation.type === 2);
-                if (historyTraversal) {
-                    // Handle page restore.                    
-                    window.location.reload();
-                }
-            });
-        </script>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>REGISTRO DE ASISTENCIA</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/main3.css">
 
     </head>
 
-
     <body id="body">
-        <img id="logo"  src="img/page_1.jpg">
+        <div>
+            <img id="log"  src="images/page_1.jpg">
+        </div>        
+        <!-- *****************************************************< Begin Nav >***************************************************************** -->
 
+        <nav  class="navbar navbar-expand-lg navbar-dark " style="width:80% ;margin-bottom: 0%; left:10%; background-color: #1A5276">
+            <a class="navbar-brand" href="Portero.jsp">Principal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">                        
+                    <li class="nav-item">
+                        <a class="nav-link" href="NuevaContrasena.jsp">Cambiar Contraseña</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="CerrarSesion">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- *****************************************************< End Nav >***************************************************************** -->
 
         <div id="contenedor">
-            <a href="CerrarSesion">Logout</a>
-            <h2 id="h2">REGISTRO DE ASISTENCIAS</h2>
+            <!--<div class="cerrar">
+               <div class="form-group aju"><button class="btn btn-info btn-block" type="submit">CERRAR SESIÓN</button></div><br>
+           </div>-->
+            <h2 id="h2-">Registro de asistencias</h2>     
 
 
-            <form id="registrar-asistencia" method="post">
-                <div id="no_control">
-                    <label for="input-nocontrol">Numero de Control: </label>
-                    <input type="number" id="input-nocontrol" name="input-nocontrol" 
-                           value="" placeholder="Esperando Numero..." />
+            <div  class="escanear">
+                <form  id="registrar-asistencia" method="POST">
 
-                    <fieldset>
-                        <legend>Tipo de entrada</legend>
-                        <input type="radio" name="modo-entrada" value="0" checked="checked" onclick="loadValueFromRadio(this.value)">Normal<br>
-                        <input type="radio" name="modo-entrada" value="1" onclick="loadValueFromRadio(this.value)">Incidencia<br>
-                    </fieldset>
+                    <div class="form">
+                        <label class="form-group">Número de control: </label>	
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando número de control. . .">
+                            <button class="btn btn-black btn-block" type="submit">Registrar</button>
+                        </div><br>
+                        <div class="radio-group "> 
+                            <input type="radio" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one">Normal</label>
+                            <input type="radio" id="option-two" value="1" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-two">Incidencia</label>
+                        </div><br>
+                    </div>
+                </form>
 
-                    <input type="submit" id="button-registrar" name="submit-button" value="Registrar"/>
+                <!-- *******************************************Div de aviso ********************************************** -->
+                <div class="alert alert-success" id="aviso" style="display: none">
+                    <!--<strong>Success!</strong> Indicates a successful or positive action.-->
                 </div>
-            </form>
-
-
-            <div id="img-alumno">
-                <img id="img-alumno-img" src="images/fotosalumno/default.jpg" alt="Imagendelalumno" height="150px" width="150px"/>
-            </div>
-
-
-
-            <div id="botonsubmit">
-                <button type="button" id="button-manual" name="button-Manual" value="boton Manual">Manual</button>
-            </div>
-
-
-            <div id="div-advertir-registro" >
-                <p id="status-registro"><p>
-            </div>
-
-
-            <div id="contenedor_buscar">
-                <div id="buscar_por_nombre">
-                    <label for="input-text">Ingrese Nombre a Buscar</label>
-                    <input type="text" id="input-text" name="nombre" value="" placeholder="Ingresa nombre completo" />
+                <!--
+                <div class="alert alert-info" id="aviso-info" style="display: none">
+                    <strong>Info!</strong> Indicates a neutral informative change or action
                 </div>
 
+                <div class="alert alert-warning" id="aviso-advertencia" style="display: none">
+                    <strong>Warning!</strong> Indicates a warning that might need attention
+                </div>
 
-                <div id="botonbuscar">
-                    <button  id="button-buscar" name="button-buscar" value="boton BUSCAR">Buscar</button>
+                <div class="alert alert-danger" id="aviso-error-grave" style="display: none">
+                    <strong>Danger!</strong> Indicates a dangerous or potentially negative action
+                </div>-->
+                <!-- *******************************************Fin Avisos ********************************************** -->
+
+                <div class="form">
+                    <div class="form-group aju"><button class="btn btn-dark btn-block" type="submit" id="button-manual">MANUAL</button></div><br>
+                    <div id="contenedor_buscar">
+                        <label class="form-group">Ingrese nombre a buscar: </label>	
+                        <div class="form-group"><input class="form-control" type="text" name="nombre" id="MyIdName" placeholder="Ingrese nombre completo"></div><br>
+                        <!-- <div class="form-group aju"><button class="btn btn-info btn-block" id="button-buscar" type="submit">BUSCAR</button></div><br>-->
+
+                        <div>
+                            <%@page import="java.sql.*" %>
+                            <%
+
+                                Class.forName("com.mysql.jdbc.Driver");
+                                Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "");
+
+                                Statement Estamento = conexion.createStatement();
+                                ResultSet rs = Estamento.executeQuery(""
+                                        + "SELECT * "
+                                        + "FROM estudiante");%>
+
+
+
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Número de control</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido Paterno</th>
+                                        <th scope="col">Apellido Materno</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    <% while (rs.next()) {
+                                            out.println("<tr>");
+
+                                            out.println("<td>");
+
+                                            out.println(rs.getInt("NoControl"));
+
+                                            out.println("</td><td>");
+
+                                            out.println(rs.getString("Nombre"));
+
+                                            out.println("</td><td>");
+
+                                            out.println(rs.getString("ApPaterno"));
+
+                                            out.println("</td><td>");
+
+                                            out.println(rs.getString("ApMaterno"));
+
+                                            out.println("</td>");
+
+                                            out.println("</tr>");
+                                        }%>
+
+                                </tbody>
+                            </table>
+
+                        </div>  
+                    </div>
+
+
                 </div>
 
 
-                <div id="tabla"></div>
-                <script type="text/javascript">
-                    document.getElementById('button-buscar').addEventListener('click', cargarAlumno);
 
-
-                    var cargarAlumno = function () {
-                        var xhr = new XMLHttpRequest();
-                        var nocontrol = document.getElementById("input-nocontrol").value;
-                        var params = "nocontrol=" + nocontrol;
-                        if (isValid(nocontrol) && event.KeyCode === 13) {
-                            xhr.open('POST', 'ServletPortero', true);
-                            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-
-                            xhr.onload = function () {
-                                console.log(this.responseText);
-                            };
-
-
-                            xhr.onerror = function () {
-                                console.log('Request Error...');
-                            };
-
-
-                            xhr.send(params);
-                        }
-                    };
-                </script>
             </div>
+        </div>	
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/InsertarAsistencia.js"></script>
+        <script src="js/EventosPortero.js"></script>
 
 
-            <script type="text/javascript">
-                var div_buscar_oculto = true;
-
-
-                document.getElementById("button-manual").addEventListener('click', mostrarDivBusqueda, false);
-                document.getElementById('contenedor_buscar').style.display = 'none';
-
-
-                function mostrarDivBusqueda() {
-                    if (div_buscar_oculto) {
-                        document.getElementById('contenedor_buscar').style.display = 'block';
-                        console.log("Mostrar");
-                    } else {
-                        document.getElementById('contenedor_buscar').style.display = 'none';
-                        console.log("Ocultar");
-                    }
-                    div_buscar_oculto = !div_buscar_oculto;
-                }
-                ;
-
-
-                document.getElementById("button-buscar").addEventListener('click', cargarInformacion);
-
-
-                function cargarInformacion() {
-                    var nombre = document.getElementById("input-text").value;
-
-
-                    var _get = new XMLHttpRequest();
-                    _get.open('GET', "ServletPortero?nombre=" + nombre + "&nrs=" + Math.random(), true);
-
-
-                    _get.onload = function () {
-                        console.log(this.responseText);
-                        if (this.status == 200) {
-                            document.getElementById("tabla").innerHTML = this.responseText;
-                        }
-                    };
-
-
-                    _get.send();
-
-                }
-                ;
-            </script>
-
-
-        </div>
-
-        <!-- Load Script Files --> 
-        <script src="js/InsertarAsistencia.js"></script> 
-
+        <script>
+                                $(document).ready(function () {
+                                    $("#MyIdName").on("keyup", function () {
+                                        var value = $(this).val().toLowerCase();
+                                        $("#myTable tr").filter(function () {
+                                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                        });
+                                    });
+                                });
+        </script>
     </body>
 </html>
