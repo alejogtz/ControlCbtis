@@ -48,8 +48,8 @@
 
                     <fieldset>
                         <legend>Tipo de entrada</legend>
-                        <label><input type="radio" name="modo-entrada" value="normal" checked="checked">Normal</label>
-                        <label><input type="radio" name="modo-entrada" value="incidencia">Incidencia</label>
+                        <input type="radio" name="modo-entrada" value="0" checked="checked" onclick="loadValueFromRadio(this.value)">Normal<br>
+                        <input type="radio" name="modo-entrada" value="1" onclick="loadValueFromRadio(this.value)">Incidencia<br>
                     </fieldset>
 
                     <input type="submit" id="button-registrar" name="submit-button" value="Registrar"/>
