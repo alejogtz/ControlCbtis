@@ -24,18 +24,20 @@ function post(event) {
 
 
     xhr.onload = function () {
-        var mensaje = document.getElementById("status-registro");
+        var mensaje = document.getElementById("aviso");
         var imagen = document.getElementById("img-alumno-img");
-
-        if (this.status === 200) {
-            mensaje.style.backgroundColor = 'green';
+        
+        mensaje.style.display = "block";
+        if (this.status === 200) {            
+            mensaje.className = "alert alert-success";
             mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " ingresado correctamente;"
             imagen.src = this.responseText;
 
 
         } else {
-            mensaje.style.backgroundColor = 'red';
+            mensaje.className = "alert alert-danger";
             mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " No fue agregado;"
+            imagen.src = "images/fotosalumno/default.jpg";
         }
         inputName.focus();
         inputName.value = '';

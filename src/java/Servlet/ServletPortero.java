@@ -39,26 +39,24 @@ public class ServletPortero extends HttpServlet {
         int nocontrol = DeString.aInt(request.getParameter("nocontrol"));
         boolean incidencia = DeString.aBoolean(request.getParameter("incidencia"));
 
-        Console.println("Servlet Portero----Incidencia", incidencia + "");
-        
-        OperacionAsistencias ObjectAsistencias = new OperacionAsistencias();
 
+        OperacionAsistencias ObjectAsistencias = new OperacionAsistencias();
         if (nocontrol != 0) {
             boolean sucess = ObjectAsistencias.insertarAsistencia(nocontrol, incidencia);
 
             if (sucess) {
                 response.setStatus(200);
-                
+
                 String img = ObjectAsistencias.getUrlImg(nocontrol);
                 out.println("images/fotosalumno/" + img);
-                
-                Console.println("Servlet Portero - Inagen", img);
+
 
             } else {
                 response.sendError(404, "Error en la insercion de la asistencia");
             }
 
-            Console.println("Servlet Portero - Insertar Alumno", sucess + "");
+        } else {
+            response.sendError(404, "Error en la insercion de la asistencia");
         }
 
     }
