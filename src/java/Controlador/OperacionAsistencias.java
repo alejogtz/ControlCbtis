@@ -37,7 +37,8 @@ public class OperacionAsistencias {
             execQuery.setBoolean(2, incidencia);
             int sucess = execQuery.executeUpdate();
             execQuery.close();
-
+            Console.println("Operacion Asistencia - exe", sucess + "");
+                   
             return sucess == 1;
         } catch (SQLException | NullPointerException ex) {
             Logger.getLogger(OperacionAsistencias.class.getName()).log(Level.SEVERE, null, ex);

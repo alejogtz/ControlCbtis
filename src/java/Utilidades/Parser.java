@@ -1,6 +1,5 @@
 package Utilidades;
 
-import java.util.ArrayList;
 
 public class Parser {
 
@@ -40,8 +39,10 @@ public class Parser {
         }
 
         public static boolean aBoolean(String parameter) {
-            Boolean parsed = Boolean.parseBoolean(parameter);
-            return parsed;
+            
+            Console.println("Parse to Boolean", parameter);
+            if (parameter.equals("1")) return true;
+            return false;
                     
         }
     }
