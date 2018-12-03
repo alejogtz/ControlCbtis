@@ -40,9 +40,9 @@ public class FilterSesion implements Filter {
         if (sesion!=null){
             String usuario = (String) sesion.getAttribute("usuario"); 
             
-            if(usuario.equalsIgnoreCase("coordinador")){
+            /*if(usuario.equalsIgnoreCase("coordinador")){
                 httpResponse.sendRedirect("Coordinadora.jsp");
-            }/*else {
+            }else {
                 httpResponse.sendRedirect("Portero.jsp");
             }*/
             
