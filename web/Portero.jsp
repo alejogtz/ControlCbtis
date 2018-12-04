@@ -49,8 +49,8 @@
                     <div class="form">
                         <label class="form-group">Número de control: </label>	
                         <div class="form-group">
-                            <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando número de control. . ." autocomplete="off">
-                            <button class="btn btn-black btn-block" type="submit">Registrar</button>
+                            <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando número de control. . ." autocomplete="off" required="required">
+                            <button id="btn-registrar" class="btn btn-black btn-block" type="submit">Registrar</button>
                         </div><br>
                         <div class="radio-group "> 
                             <input type="radio" checked="checked" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one">Normal</label>

@@ -15,36 +15,67 @@ public class OperacionAsistencias {
     public boolean tieneConexion() {
         try {
             return new Conexion().getConexion() != null;
-        } catch ( CommunicationsException ex){
-            
+        } catch (CommunicationsException ex) {
+
         }
         return false;
     }
-
-    
 
     public OperacionAsistencias() {
     }
 
-    public boolean insertarAsistencia(int nocontrol, boolean incidencia) {
-        String query = "INSERT INTO asistencia values ( 0, ?, CURRENT_DATE, CURRENT_TIME, 'Ninguno', ?)";
-
+    /**
+     *
+     * @param nocontrol
+     * @param incidencia
+     * @return 1 sucess 
+     * 404 Alumno no encontrado o no existe en la base de datos
+     * 500 No se pudo establecer conexion con la base de datos 
+     * 300 Alumno ya fue
+     * insertado el día de hoy
+     * @throws CommunicationsException
+     */
+    public int insertarAsistencia(int nocontrol, boolean incidencia){
+        String query = "INSERT INTO asistencia VALUES ( 0, ?, CURRENT_DATE, CURRENT_TIME, 'Ninguno', ?)";
+        
+        Conexion    conexion = null;
+        Connection  con = null;
+        PreparedStatement execQuery = null;
+        
         try {
-            Connection con = new Conexion().getConexion();
-            PreparedStatement execQuery = null;
+            
+            conexion = new Conexion();
+            if (conexion == null) throw new NullPointerException("Conexion is Null");
+            
+            con = conexion.getConexion();
             execQuery = con.prepareStatement(query);
+            
             execQuery.setInt(1, nocontrol);
             execQuery.setBoolean(2, incidencia);
+            
             int sucess = execQuery.executeUpdate();
-            execQuery.close();
-            Console.println("[40]Operacion Asistencia - exe", sucess + "");
-                   
-            return sucess == 1;
-        } catch (SQLException | NullPointerException ex) {
-            Logger.getLogger(OperacionAsistencias.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            
+            if (sucess != 1) throw new SQLException();
 
-        return false;
+            Console.println("[40]Operacion Asistencia - exe", sucess + "");
+
+            return sucess;
+        } catch (CommunicationsException ex) {
+            return 500;
+        } catch (NullPointerException ex) {
+            return 500;
+        } catch (SQLException ex) {
+            return 404;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (execQuery != null) {
+                    execQuery.close();
+                }
+            } catch (Exception e) {}
+        }
     }
 
     public String getUrlImg(int NoControl) {

@@ -39,24 +39,34 @@ public class ServletPortero extends HttpServlet {
         int nocontrol = DeString.aInt(request.getParameter("nocontrol"));
         boolean incidencia = DeString.aBoolean(request.getParameter("incidencia"));
 
-
         OperacionAsistencias ObjectAsistencias = new OperacionAsistencias();
-        if (nocontrol != 0) {
-            boolean sucess = ObjectAsistencias.insertarAsistencia(nocontrol, incidencia);
+        int sql_state = ObjectAsistencias.insertarAsistencia(nocontrol, incidencia);
 
-            if (sucess) {
+        switch (sql_state) {
+            case 1:
+                
                 response.setStatus(200);
-
                 String img = ObjectAsistencias.getUrlImg(nocontrol);
                 out.println("images/fotosalumno/" + img);
-
-
-            } else {
-                response.sendError(404, "Error en la insercion de la asistencia");
-            }
-
-        } else {
-            response.sendError(404, "Error en la insercion de la asistencia");
+                break;
+                
+            case 404:
+                
+                response.sendError(404, "El alumno no existe en la Base de datos");
+                break;
+                
+            case 300:
+                
+                response.sendError(300, "Este Alumno ya fue ingresado en este día");
+                break;
+                
+            case 500:
+                
+                response.sendError(500, "No se pude establece la conexión con la Base de Datos");
+                break;
+                
+            default:
+                break;
         }
 
     }
