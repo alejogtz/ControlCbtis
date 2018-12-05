@@ -72,6 +72,7 @@
                         <label style="margin-left: 5%" for="input-Vpassword">Verificar Nueva Contraseña: </label>
                         <input type="password" id="input-Vpassword" name="txtVpass" 
                                value=""  placeholder="Esperando contraseña..." />
+                        <input type="hidden" value=<%= request.getSession().getAttribute("usuario")%> name="SesionActiva" id="SesionActiva"/>
                     </div>
 
                 </div>

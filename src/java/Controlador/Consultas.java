@@ -154,15 +154,19 @@ public class Consultas extends Conexion{
     }
 
     
-    public boolean CambiarContrasena(String Nuevacontrasena) {
+    public boolean CambiarContrasena(String Nuevacontrasena, String user) {
         PreparedStatement pst = null;
         ResultSet rs = null;
+        String usuario = "Coordinador";
         //boolean bandera = false;
         try {
-
-            String consulta = "UPDATE sesion SET Password = ?  WHERE NombreSesion = 'Coordinador'";
+            
+            if (user.equals("vigilante")){usuario="Vigilante";}
+            
+            String consulta = "UPDATE sesion SET Password = ?  WHERE NombreSesion = ?";//'Coordinador'";
             pst = getConexion().prepareStatement(consulta);
             pst.setString(1, Nuevacontrasena);
+            pst.setString(2, usuario);
             //pst.executeUpdate();
 
             if (pst.executeUpdate() > 0) {
