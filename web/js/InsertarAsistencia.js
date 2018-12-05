@@ -47,7 +47,7 @@ function post(event) {
         if (this.status === 200) {
 
             mensaje.className = "alert alert-success";
-            mensaje.innerHTML = "<strong>Exito: </strong>  Asistencia para el número de control: " + nocontrol + " registrado correctamente";
+            mensaje.innerHTML = "<strong>Exito: </strong>  Asistencia para el número de control: <br><strong>" + nocontrol + "</strong> registrado correctamente";
             imagen.style.display = "block";
             imagen.src = this.responseText;
 
@@ -55,27 +55,27 @@ function post(event) {
         }else if (this.status === 404) {
             
             mensaje.className = "alert alert-danger";
-            mensaje.innerHTML = "El alumno con Número de Control:  " + nocontrol + "<br> No existe en la base de datos <br> Se ha enviado una notificación a la Coordinación";
+            mensaje.innerHTML = "El alumno con Número de Control: <br><strong>" + nocontrol + "</strong> No existe en la base de datos <br> Se ha enviado una notificación a la Coordinación";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 
         }else if (this.status === 300) {
             
             mensaje.className = "alert alert-warning";
-            mensaje.innerHTML = "La asistencia para el alumno con Número de Control:  " + nocontrol + " ya está registrada";
+            mensaje.innerHTML = "<strong>Advertencia</strong> La asistencia para el alumno con Número de Control: <br><strong> " + nocontrol + "</strong> ya está registrada";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 
         }else if (this.status === 500) {
             
             mensaje.className = "alert alert-danger";
-            mensaje.innerHTML = "No se pudo establecer la conexión con la Base de datos X_X";
+            mensaje.innerHTML = "<strong>Fatal</strong> No se pudo establecer la conexión con la Base de datos X_X";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
             
         } else {
             mensaje.className = "alert alert-danger";
-            mensaje.innerHTML = "Alumno con numero de control: " + nocontrol + " No fue agregado;";
+            mensaje.innerHTML = "<strong>Error</strong> Alumno con numero de control: <br><strong>" + nocontrol + "</strong> No fue agregado;";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
         }

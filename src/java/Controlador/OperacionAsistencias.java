@@ -48,6 +48,17 @@ public class OperacionAsistencias {
             if (conexion == null) throw new NullPointerException("Conexion is Null");
             
             con = conexion.getConexion();
+            
+            //------ Pero antes.... Verificar si en este día ya fue registrado ---------------
+            execQuery =  con.prepareStatement("SELECT isAlreadyRegistered(?) AS EXISTE");
+            execQuery.setInt(1, nocontrol);            
+            ResultSet rs = execQuery.executeQuery();
+            rs.next();
+            if (rs.getInt("EXISTE")==1) {
+                SQLException raise_error = new SQLException("El Alumno ya fue Registrado el día del hoy", "300");
+                throw raise_error;
+            }            
+            // ---------------------- <End Verificacion>----------------------------
             execQuery = con.prepareStatement(query);
             
             execQuery.setInt(1, nocontrol);
@@ -65,7 +76,8 @@ public class OperacionAsistencias {
         } catch (NullPointerException ex) {
             return 500;
         } catch (SQLException ex) {
-            return 404;
+            if (ex.getSQLState().equals("300")) return 300;
+            else return 404;
         } finally {
             try {
                 if (con != null) {

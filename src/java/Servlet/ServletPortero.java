@@ -1,7 +1,5 @@
 package Servlet;
 
-import Controlador.Conexion;
-import Controlador.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
