@@ -28,14 +28,18 @@ public class CambiarContrasena extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        //response.setContentType("text/plain");
 
+        // vigilante
         String contrasena = request.getParameter("txtpass");
         String verificarcontrasena = request.getParameter("txtVpass");
+        
+        // ---------------------------------Obtener el usuario activo ------------------------------------------
+        String user = request.getParameter("SesionActiva");
+        
         if (contrasena.equals(verificarcontrasena)) {
             try {
                 Consultas co = new Consultas();
-                if (co.CambiarContrasena(md5.Encriptar(contrasena))) {
+                if (co.CambiarContrasena( md5.Encriptar(contrasena), user) ) {
                     //response.sendRedirect("Coordinadora.jsp");
                      out.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
                         "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
