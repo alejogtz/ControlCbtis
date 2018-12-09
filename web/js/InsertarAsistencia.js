@@ -14,7 +14,6 @@ function noEnviarSiCampoVacio(event) {
         mensaje.style.display = "block";
         mensaje.className = "alert alert-danger";
         mensaje.innerHTML = "<strong>Campo Vacio:</strong> Complete el campo de Número de Control";
-
         console.log("Line: 18 - InsertarAsistencia.js -> Antes de anular la acción");
         event.preventDefault();
     } else
@@ -55,7 +54,7 @@ function post(event) {
         }else if (this.status === 404) {
             
             mensaje.className = "alert alert-danger";
-            mensaje.innerHTML = "El alumno con Número de Control: <br><strong>" + nocontrol + "</strong> No existe en la base de datos <br> Se ha enviado una notificación a la Coordinación";
+            mensaje.innerHTML = "El alumno con Número de Control:<strong>" + nocontrol + "</strong> No existe en la base de datos. <br> Se ha enviado una notificación a la Coordinación";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 
@@ -75,7 +74,7 @@ function post(event) {
             
         } else {
             mensaje.className = "alert alert-danger";
-            mensaje.innerHTML = "<strong>Error</strong> Alumno con numero de control: <br><strong>" + nocontrol + "</strong> No fue agregado;";
+            mensaje.innerHTML = "<strong>Error</strong> Alumno con numero de control:<strong>" + nocontrol + "</strong> No fue registrado;";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
         }
