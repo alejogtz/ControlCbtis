@@ -11,14 +11,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Incidencia</title>
-     <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/main3.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <!-- <script src="js/validacionCoordinadora.js"></script> -->
-  
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/bootstrap-table.min.css">
+            <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/bootstrap-table.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/locale/bootstrap-table-es-MX.min.js"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter/bootstrap-table-filter.min.js"></script> 
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.min.js"></script> 
 </head>
 
 <body id="body">
@@ -64,20 +67,26 @@ ResultSet rs = Estamento.executeQuery(""
         
 
         <h2 id="h2">Tabla de Incidencias</h2>
-        <div class="container">
-            <input style="width:94%" maxlength="20" class="form-control" id="myInput" type="text" placeholder="Search..">
-  <br>
-  <table style="width:94%" class="table table-bordered table-striped">
+        <div class="container" style=" width: 98%">
+ 
+ <table id="table"  data-toggle="table"
+                   data-click-to-select="true"
+                   data-filter-control="true"
+		   data-toolbar="#toolbar"
+                   data-pagination="true"  
+                   data-side-pagination="client" 
+                   data-page-size="10" 
+                   data-page-list="[10, 25, 50, 100, ALL]"> 
     <thead>
-      <tr>
-        <th>No. De Control</th>
-        <th>Nombre</th>
-        <th>Apellido Paterno</th>
-        <th>Apellido Materno</th>
-        <th>Fecha de Incidencia</th>
+      <tr >
+        <th data-field="No. de Control"   data-filter-control="input"  data-sortable="true" onkeypress="return solonumeros(event)"  >No. de Control</th>
+        <th data-field="Nombre" data-filter-control="input" data-sortable="true">Nombre</th>
+	<th data-field="Apellido Paterno" data-filter-control="input" data-sortable="true">Apellido Paterno</th>
+        <th data-field="Apellido Materno" data-filter-control="input" data-sortable="true">Apellido Materno</th>
+	<th data-width="15%" data-field="Fecha" data-sortable="true">Fecha</th>
       </tr>
     </thead>
-    <tbody id="myTable">
+    <tbody >
         <% while (rs.next()) { 
             out.println("<tr>");
 
@@ -112,19 +121,26 @@ ResultSet rs = Estamento.executeQuery(""
 </div>
         
     </div>
-        
-        
-        
+
+
 <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    
+    var $table = $('#table');
+    $(function () {
+        $('#toolbar').find('select').change(function () {
+            $table.bootstrapTable('refreshOptions', {
+                exportDataType: $(this).val()
+            });
+        });
     });
-  });
-});
+
+		var trBoldBlue = $("table");
+
+	$(trBoldBlue).on("click", "tr", function (){
+			$(this).toggleClass("bold-blue");
+	});
 </script>
+
 
 </body>
 
