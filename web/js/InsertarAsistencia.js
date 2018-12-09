@@ -62,7 +62,7 @@ function post(event) {
         }else if (this.status === 300) {
             
             mensaje.className = "alert alert-warning";
-            mensaje.innerHTML = "<strong>Advertencia</strong> La asistencia para el alumno con Número de Control: <br><strong> " + nocontrol + "</strong> ya está registrada";
+            mensaje.innerHTML = "<strong>Advertencia</strong> La asistencia para el alumno con Número de Control: <strong> " + nocontrol + "</strong> ya está registrada";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 
