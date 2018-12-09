@@ -29,6 +29,13 @@
                 <div>
                 <img id="log" src="images/a.png" class="img-rounded" > 
                 </div>
+                
+                <%
+                    String aviso = (String)request.getAttribute("Mensaje");
+                    if (aviso!=null)
+                    out.println(aviso);
+                %>
+                
                 <div class="login-dark " style="margin-top: 22%; margin-bottom: 22%">
                     <div class="form">
                         <form action="Iniciar" method="post" id="forminicio">

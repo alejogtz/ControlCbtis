@@ -61,7 +61,6 @@ function borrarError(){
 }
 
 function solonumeros(e){
-    alert(e.charCode);
     var key = e.charCode;
     if (
             (key >= 48 && key <= 57 ) ||

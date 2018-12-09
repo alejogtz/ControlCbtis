@@ -36,6 +36,7 @@ public class InicioSesion extends HttpServlet {
             String encriptado = request.getParameter("contrasena");
             String contrasena = md5.Encriptar(encriptado);
             
+            String msje = null;
             
             Consultas co = new Consultas();
             
@@ -53,11 +54,13 @@ public class InicioSesion extends HttpServlet {
                 }
             } else {
               
-              out.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
-                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" +
+                msje = " <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
                 "<strong>Alerta!</strong> La contraseña es incorrecta."+ 
-                "</div> ");
-             
+                "</div> ";
+                request.setAttribute("Mensaje", msje);
+              
+              
+                           
              RequestDispatcher rd=request.getRequestDispatcher("index.jsp");  
              
                 rd.include(request,response); 
