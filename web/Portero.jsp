@@ -57,11 +57,11 @@
                         <label class="form-group">Número de control: </label>	
                         <div class="form-group" style="display:inline-block">
                             <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando..." autocomplete="off" maxlength="8" required="required" style="width:40%;display: inline-block">
-                            <button id="btn-registrar" class="btn btn-black btn-block" type="submit" style="width:40%; display:inline-block">Registrar</button>
+                            <button id="btn-registrar" class="btn btn-primary btn-block" type="submit" style="width:40%; display:inline-block">Registrar</button>
                         </div>
-                        <div class="radio-group "> 
-                            <input type="radio" checked="checked" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one">Normal</label>
-                            <input type="radio" id="option-two" value="1" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-two">Incidencia</label>
+                        <div class="radio-group" > 
+                            <input type="radio"  checked="checked" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label style="color: black" class="label" for="option-one">Normal</label>
+                            <input type="radio"  id="option-two" value="1" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label style="color: black" class="label" for="option-two">Incidencia</label>
                         </div><br>
                     </div>
                 </form>
@@ -73,7 +73,7 @@
                 <img src="" height="150px" width="150px" id="img-alumno-img" style="display:none" >
 
                 <div class="form">
-                    <div class="form-group aju"><button class="btn btn-dark btn-block" type="submit" id="button-manual">MANUAL</button></div><br>
+                    <div class="form-group aju"><button class="btn btn-primary btn-block" type="submit" id="button-manual">MANUAL</button></div><br>
                     <div id="contenedor_buscar">
 
                         <div>
@@ -81,7 +81,7 @@
                             <%
 
                                 Class.forName("com.mysql.jdbc.Driver");
-                                Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "chivas1958");
+                                Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "");
 
                                 Statement Estamento = conexion.createStatement();
                                 ResultSet rs = Estamento.executeQuery(""
