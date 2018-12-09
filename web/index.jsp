@@ -18,42 +18,54 @@
     </head>
 
     <body id="body">
-        <div>
+      
+
+             	<div>
             <img id="logo"  src="images/page_1.jpg">
         </div>
 
         <div id="contenedor">	
-            <h2 id="h2">INICIAR SESIÓN</h2>	
-            <form action="Iniciar" method="post" id="forminicio">
+                <h2 id="h2">INICIAR SESIÓN</h2>	
+                <div>
                 <img id="log" src="images/a.png" class="img-rounded" > 
-
-                <div class="login-dark ">
+                </div>
+                <div class="login-dark " style="margin-top: 22%; margin-bottom: 22%">
                     <div class="form">
+                        <form action="Iniciar" method="post" id="forminicio">
                         <div class="form-group">
-                            <select class="form-control" name="usuario" id="txtusuario">
+                            <select class="form-control" name="usuario" id="txtusuario" style="background-color: white">
                                 <option value="coordinador" selected>Coordinador</option>
                                 <option value="vigilante">Vigilante</option>
                             </select>
                         </div>  
 
-                        <div class="form-group">
+                        <div class="form-group" style="background-color: white">
                             <input class="form-control" id="txtpass" type="password" name="contrasena" placeholder="Contraseña" maxlength="16" required>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit" value="Iniciar Sesion" id="btniniciar">ACCEDER</button>
                         </div>
-                        
-                    </div>
-                </div>
-            </form>
-            
-            <div style=" margin-left:  70% ; margin-top: 20%" id="botonrecuperar">
+                        </form>
+                        <div class="form-group ">
+                            <label style="color: white">Recuperar Contraseña: </label>
+                        </div>
+                         <div class="form-group ">
                             <form action="Enviarcorreo" method="post" >
-                                <input style="width: 60% ; left: 30%" class="btn btn-primary btn-block" type="submit" value="Recuperar contraseña" id="btncorreo" />
+                                <input  class="btn btn-primary btn-block" type="submit" value="Coordinadora" id="btncorreo" />
                             </form>
                         </div>
+                        <div class="form-group ">
+                            <form action="Enviarcorreovigilante" method="post" >
+                                <input  class="btn btn-primary btn-block" type="submit" value="Vigilante" id="btncorreo" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
 
-             </div>	
+</div> 
         
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>

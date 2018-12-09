@@ -75,11 +75,11 @@ ResultSet rs = Estamento.executeQuery(""
 		   data-toolbar="#toolbar"
                    data-pagination="true"  
                    data-side-pagination="client" 
-                   data-page-size="10" 
-                   data-page-list="[10, 25, 50, 100, ALL]"> 
+                   data-page-size="3" 
+                   data-page-list="[5, 25, 50, 100, ALL]"> 
     <thead>
       <tr >
-        <th data-field="No. de Control"   data-filter-control="input"  data-sortable="true" onkeypress="return solonumeros(event)"  >No. de Control</th>
+        <th data-field="NoControl"   data-filter-control="input"  data-sortable="true">No. de Control</th>
         <th data-field="Nombre" data-filter-control="input" data-sortable="true">Nombre</th>
 	<th data-field="Apellido Paterno" data-filter-control="input" data-sortable="true">Apellido Paterno</th>
         <th data-field="Apellido Materno" data-filter-control="input" data-sortable="true">Apellido Materno</th>

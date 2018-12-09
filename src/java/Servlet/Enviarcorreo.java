@@ -43,32 +43,21 @@ public class Enviarcorreo extends HttpServlet {
             Email email = new Email();
             Consultas consulta = new Consultas();
             
-            // String recuperarpassword = md5.Desencriptar(consulta.restaurarcorreo("carlos_19alber@hotmail.com"));
+           
             String resultado = " ";
-            //out.print(resultado);
             String de = "restaurarcontrasena123@gmail.com";
             String clave = "ejhmrxbmzbjayssf";
-            //String para = request.getParameter("correo");
+            
             String para = "carlos_19alber@hotmail.com";
-            String mensaje = "Esta es tu contraseña: " + md5.Desencriptar(consulta.restaurarcorreo("coordinador"));
-            String asunto = "RESTAURAR CONTRASEÑA";
-            //out.print(resultado);
+            String mensaje = "Estimado usuario (Coordinador).\n "
+                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta.restaurarcorreo("coordinador") + "\n"+
+                    "No lo comparta por su seguridad.");
+            String asunto = "RECORDAR CONTRASEÑA";
             
-            
-            //recuperarpassword = consulta.restaurarcorreo(request.getParameter("correo"));
             resultado = email.enviarCorreo(de, clave, para, mensaje, asunto);
             
             response.sendRedirect("index.jsp");
-            //out.print(resultado);
             
-            /*if(resultado){
-            //out.print("CORREO ELECTRONICO CORRECTAMENTE ENVIADO.....");
-            //JOptionPane.showMessageDialog(null, "CORREO ELECTRONICO ENVIADO.....");
-                
-            }else{
-            //out.print("CORREO ELECTRONICO NO ENVIADO.....");
-            //JOptionPane.showMessageDialog(null, "CORREO ELECTRONICO NO ENVIADO.....");
-            }*/
         } catch (Exception ex) {
             Logger.getLogger(Enviarcorreo.class.getName()).log(Level.SEVERE, null, ex);
         }

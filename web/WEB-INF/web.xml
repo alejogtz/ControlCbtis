@@ -26,6 +26,14 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
+    <servlet>
+        <servlet-name>Enviarcorreovigilante</servlet-name>
+        <servlet-class>Servlet.Enviarcorreovigilante</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Enviarcorreovigilante</servlet-name>
+        <url-pattern>/Enviarcorreovigilante</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
