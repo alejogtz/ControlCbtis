@@ -38,16 +38,20 @@
             </div>
             </nav>
 	<div id="contenedor">	
+            <%
+                    String aviso = (String)request.getAttribute("Mensaje");
+                    if (aviso!=null)
+                    out.println(aviso);
+                %>
 		<h2 id="h2-">Bienvenido Coordinador</h2>  		
 		<form name="reporte" method="get" action="/WebProjectCbtis/pdf">
                     <div  class="escanear">
-                    <div class="form">	
-                    <label for="input-number" class="form-group">Número de control: </label>	
-                            <div  class="form-group">                                
-                                <input class="form-control" type="text" name="txtId" minlength="6" maxlength="9" required="required" placeholder="Esperando Numero..." onkeypress="return solonumeros(event)">
+                    <div class="form" style="display:inline-block;padding-left: 20%">	
+                    <label for="input-number" class="form-group" >Número de control: </label>	
+                            <div  class="form-group" style="display:inline-block">                                
+                                <input class="form-control" type="text" name="txtId" minlength="6" maxlength="8" required="required" placeholder="Esperando Numero..." onkeypress="return solonumeros(event)">
                             </div>
-                    <br>
-                    <div class="form-group aju">
+                    <div class="form-group aju"style="display:inline-block">
                         <button class="btn btn-dark btn-block" type="submit" id="button-submit" value="Generar Reporte" name="btnver">GENERAR REPORTE</button>
                     </div>
                     <br>

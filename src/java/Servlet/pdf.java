@@ -49,11 +49,15 @@ public class pdf extends HttpServlet {
         String Nombre = null;
         int id = Integer.parseInt(request.getParameter("txtId"));
         String fecha_generada = "Fecha de Generación: " + new SimpleDateFormat("dd-MM-yyyy").format(myDate);
-
+        String aviso = null;
         try {
             //>>>>>>>>---------------------- Pero antes.... Verificar si este alumno cuenta con asistencias registradas -------------------------
-            if (!existeEsteAlumno(id)){throw new Exception("El alumno con No. control: " + id + " No existe");}
-            if (!tieneAsistenciasRegistradas(id)) {throw new Exception("No se puede generar un reporte vacío");}
+            if (!existeEsteAlumno(id)) {
+                throw new Exception("El alumno con No. control: " + id + " No existe");
+            }
+            if (!tieneAsistenciasRegistradas(id)) {
+                throw new Exception("No se puede generar un reporte vacío");
+            }
 
             // Else --------------- Visualziar un msje de Advertencia que indique que No se han registrado asistencias de este alumno ---------
             //>>>>>>>> -------------------------End logica -----------------------------------------------------
@@ -169,38 +173,44 @@ public class pdf extends HttpServlet {
             documento.close();
 
         } catch (DocumentException ex) {
-            response.setContentType("text/html;charset=UTF-8"); 
-            if (out ==null)
+            response.setContentType("text/html;charset=UTF-8");
+            if (out == null) {
                 outs = new PrintWriter(response.getWriter());
-            else outs = new PrintWriter(out);
-            outs = response.getWriter();
-             outs.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
-                    + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>"
+            } else {
+                outs = new PrintWriter(out);
+            }
+            //outs = response.getWriter();
+            aviso = " <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
                     + "<strong>Alerta!</strong> La contraseña es incorrecta."
-                    + "</div> ");
+                    + "</div> ";
+            request.setAttribute("Mensaje", aviso);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Coordinadora.jsp");
             rd.include(request, response);
         } catch (SQLException e) {
             response.setContentType("text/html;charset=UTF-8");
-            outs = response.getWriter();
-            outs.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
-                    + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>"
+            //outs = response.getWriter();
+            aviso = " <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
                     + "<strong>Alerta!</strong> La contraseña es incorrecta."
-                    + "</div> ");
+                    + "</div> ";
+            request.setAttribute("Mensaje", aviso);
+
             RequestDispatcher rd = request.getRequestDispatcher("/Coordinadora.jsp");
             rd.include(request, response);
         } catch (Exception ex) {
             response.setContentType("text/html;charset=UTF-8");
-            outs = response.getWriter();
-            outs.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
-                    + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>"
-                    + "<strong>Advertencia! </strong>" + ex.getMessage() + "</div> ");
+            //outs = response.getWriter();
+            aviso = " <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Advertencia! </strong>" + ex.getMessage() + "</div> ";
+            request.setAttribute("Mensaje", aviso);
+
             RequestDispatcher rd = request.getRequestDispatcher("/Coordinadora.jsp");
             rd.include(request, response);
         } finally {
-            if (out!=null)
+
+            if (out != null) {
                 out.close();
+            }
         }
 
     }
@@ -251,8 +261,8 @@ public class pdf extends HttpServlet {
             return false;
         }
     }
-    
-    public boolean existeEsteAlumno(int noControl){
+
+    public boolean existeEsteAlumno(int noControl) {
         Conexion conexion = null;
         Connection con = null;
         PreparedStatement execQuery = null;
@@ -269,7 +279,7 @@ public class pdf extends HttpServlet {
             execQuery.setInt(1, noControl);
             ResultSet rs = execQuery.executeQuery();
             rs.next();
-            
+
             boolean siExiste = rs.getBoolean("EXISTE");
 
             execQuery.close();
