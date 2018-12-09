@@ -62,6 +62,7 @@
                         <div class="radio-group "> 
                             <input type="radio" checked="checked" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one" style="color:black">Normal</label>
                             <input type="radio" id="option-two" value="1" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-two" style="color:black">Incidencia</label>
+
                         </div><br>
                     </div>
                 </form>
