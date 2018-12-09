@@ -18,27 +18,29 @@
     </head>
 
     <body id="body">
-      
 
-             	<div>
+
+        <div>
             <img id="logo"  src="images/page_1.jpg">
         </div>
 
         <div id="contenedor">	
-                <h2 id="h2">INICIAR SESIÓN</h2>	
-                <div>
+            <h2 id="h2">INICIAR SESIÓN</h2>	
+            <div>
                 <img id="log" src="images/a.png" class="img-rounded" > 
-                </div>
-                
-                <%
-                    String aviso = (String)request.getAttribute("Mensaje");
-                    if (aviso!=null)
+            </div>
+
+            <%
+                String aviso = (String) request.getAttribute("Mensaje");
+                if (aviso != null) {
                     out.println(aviso);
-                %>
-                
-                <div class="login-dark " style="margin-top: 22%; margin-bottom: 22%">
-                    <div class="form">
-                        <form action="Iniciar" method="post" id="forminicio">
+                    request.setAttribute("Mensaje", "");
+                }
+            %>
+
+            <div class="login-dark " style="margin-top: 22%; margin-bottom: 22%">
+                <div class="form">
+                    <form action="Iniciar" method="post" id="forminicio">
                         <div class="form-group">
                             <select class="form-control" name="usuario" id="txtusuario" style="background-color: white">
                                 <option value="coordinador" selected>Coordinador</option>
@@ -52,22 +54,30 @@
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit" value="Iniciar Sesion" id="btniniciar">ACCEDER</button>
                         </div>
-                        </form>
-                       
-                         <div class="form-group ">
-                            <form action="Enviarcorreo" method="post" >
-                                <input  class="btn btn-primary btn-block" type="submit" value="Recuperar contraseña" id="btncorreo" />
-                            </form>
-                        </div>
-                        
-                    </div>
-                </div>
-            
-            
-            
+                    </form>
 
-</div> 
-        
+                    <div class="form-group ">
+                        <form action="Enviarcorreo" method="post" >
+                            <input  class="btn btn-primary btn-block" type="submit" value="Recuperar contraseña" id="btncorreo" />
+                        </form>
+                        <br>
+                        <%
+                            String correo_aviso = (String) request.getAttribute("Info-correo");
+                            if (correo_aviso != null) {
+                                out.println(correo_aviso);
+                                request.setAttribute("Info-correo", "");
+                            }
+                        %>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div> 
+
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

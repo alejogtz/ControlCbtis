@@ -13,6 +13,9 @@ import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,42 +40,65 @@ public class Enviarcorreo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-            
+        String aviso = null;
+        response.setContentType("text/html;charset=UTF-8");
         try {
             Email email = new Email();
             Consultas consulta = new Consultas();
-            
-           Consultas consulta1 = new Consultas();
+
+            Consultas consulta1 = new Consultas();
             String resultado = " ";
             String de = "restaurarcontrasena123@gmail.com";
             String clave = "ejhmrxbmzbjayssf";
-            
+
             String para = "carlos_19alber@hotmail.com";
             String mensaje = "Estimado usuario (Coordinador).\n "
-                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta.restaurarcorreo("coordinador") + "\n"+
-                    "No lo comparta por su seguridad.");
+                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta.restaurarcorreo("coordinador") + "\n"
+                            + "No lo comparta por su seguridad.");
             String asunto = "RECORDAR CONTRASEÑA";
-            
+
             resultado = email.enviarCorreo(de, clave, para, mensaje, asunto);
-            
-            
+
             String para1 = "alessio_combo1@hotmail.com";
             String mensaje1 = "Estimado usuario (Vigilante).\n "
-                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta1.restaurarcorreo("vigilante") + "\n"+
-                    "No lo comparta por su seguridad.");
-            
-            
+                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta1.restaurarcorreo("vigilante") + "\n"
+                            + "No lo comparta por su seguridad.");
+
             resultado = email.enviarCorreo(de, clave, para1, mensaje1, asunto);
-            response.sendRedirect("index.jsp");
-            
+
+            aviso = " <div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Exito!</strong> Revise su correo electronico, ha recibido un mensaje con su contraseña."
+                    + "</div> ";
+            request.setAttribute("Info-correo", aviso);
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+
+            rd.include(request, response);
+        } catch (AddressException ex) {
+            aviso = " <div class=\"alert alert-danger alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Fatal!</strong> Ha ocurrido un error con su direccion de Correo Electronico. Por favor, consulte a su programador :v"
+                    + "</div> ";
+            request.setAttribute("Info-correo", aviso);
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+
+            rd.include(request, response);
+
+        } catch (MessagingException e) {
+             aviso = " <div class=\"alert alert-danger alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Fatal!</strong> Ha ocurrido un error con el envío de su contraseña. Por favor, corrobore que tenga accesos a Internet o llame a su proveedor ISP"
+                    + "</div> ";
+            request.setAttribute("Info-correo", aviso);
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+
+            rd.include(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(Enviarcorreo.class.getName()).log(Level.SEVERE, null, ex);
+            aviso = " <div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Fatality!</strong> X_X Error Desconocido. Si esto ocurre es culpa de Carlitos"
+                    + "</div> ";
+            request.setAttribute("Info-correo", aviso);
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+
+            rd.include(request, response);
         }
-            
-        
-
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
