@@ -43,7 +43,7 @@ public class Enviarcorreo extends HttpServlet {
             Email email = new Email();
             Consultas consulta = new Consultas();
             
-           
+           Consultas consulta1 = new Consultas();
             String resultado = " ";
             String de = "restaurarcontrasena123@gmail.com";
             String clave = "ejhmrxbmzbjayssf";
@@ -56,6 +56,14 @@ public class Enviarcorreo extends HttpServlet {
             
             resultado = email.enviarCorreo(de, clave, para, mensaje, asunto);
             
+            
+            String para1 = "alessio_combo1@hotmail.com";
+            String mensaje1 = "Estimado usuario (Vigilante).\n "
+                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta1.restaurarcorreo("vigilante") + "\n"+
+                    "No lo comparta por su seguridad.");
+            
+            
+            resultado = email.enviarCorreo(de, clave, para1, mensaje1, asunto);
             response.sendRedirect("index.jsp");
             
         } catch (Exception ex) {

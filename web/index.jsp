@@ -46,19 +46,13 @@
                             <button class="btn btn-primary btn-block" type="submit" value="Iniciar Sesion" id="btniniciar">ACCEDER</button>
                         </div>
                         </form>
-                        <div class="form-group ">
-                            <label style="color: white">Recuperar Contraseña: </label>
-                        </div>
+                       
                          <div class="form-group ">
                             <form action="Enviarcorreo" method="post" >
-                                <input  class="btn btn-primary btn-block" type="submit" value="Coordinadora" id="btncorreo" />
+                                <input  class="btn btn-primary btn-block" type="submit" value="Recuperar contraseña" id="btncorreo" />
                             </form>
                         </div>
-                        <div class="form-group ">
-                            <form action="Enviarcorreovigilante" method="post" >
-                                <input  class="btn btn-primary btn-block" type="submit" value="Vigilante" id="btncorreo" />
-                            </form>
-                        </div>
+                        
                     </div>
                 </div>
             

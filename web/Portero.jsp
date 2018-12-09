@@ -9,6 +9,15 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/main3.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/bootstrap-table.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/bootstrap-table.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/locale/bootstrap-table-es-MX.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter/bootstrap-table-filter.min.js"></script> 
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.min.js"></script> 
+
 
     </head>
 
@@ -48,7 +57,7 @@
                         <label class="form-group">Número de control: </label>	
                         <div class="form-group" style="display:inline-block">
                             <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando..." autocomplete="off" maxlength="8" required="required" style="width:40%;display: inline-block">
-                           <button id="btn-registrar" class="btn btn-black btn-block" type="submit" style="width:40%; display:inline-block">Registrar</button>
+                            <button id="btn-registrar" class="btn btn-black btn-block" type="submit" style="width:40%; display:inline-block">Registrar</button>
                         </div>
                         <div class="radio-group "> 
                             <input type="radio" checked="checked" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one">Normal</label>
@@ -66,17 +75,13 @@
                 <div class="form">
                     <div class="form-group aju"><button class="btn btn-dark btn-block" type="submit" id="button-manual">MANUAL</button></div><br>
                     <div id="contenedor_buscar">
-                        <label class="form-group">Nombre del Alumno: </label>	
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="nombre" id="MyIdName" placeholder="Ingrese nombre completo"></div>
-                        <!-- <div class="form-group aju"><button class="btn btn-info btn-block" id="button-buscar" type="submit">BUSCAR</button></div><br>-->
 
                         <div>
                             <%@page import="java.sql.*" %>
                             <%
 
                                 Class.forName("com.mysql.jdbc.Driver");
-                                Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "");
+                                Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "chivas1958");
 
                                 Statement Estamento = conexion.createStatement();
                                 ResultSet rs = Estamento.executeQuery(""
@@ -84,44 +89,52 @@
                                         + "FROM estudiante");%>
 
 
+                            <div class="container" style=" width: 98%">
+                                <table id="table"  data-toggle="table"
+                                       data-click-to-select="true"
+                                       data-filter-control="true"
+                                       data-toolbar="#toolbar"
+                                       data-pagination="true"  
+                                       data-side-pagination="client" 
+                                       data-page-size="10" 
+                                       data-page-list="[10, 25, 50]">
+                                    <thead class="thead-dark">
+                                        <tr>
 
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Número de control</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Apellido Paterno</th>
-                                        <th scope="col">Apellido Materno</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable">
-                                    <% while (rs.next()) {
-                                            out.println("<tr>");
+                                            <th  data-field="NoControl"   data-filter-control="input"  data-sortable="true">No. de Control</th>
+                                            <th data-field="Nombre" data-filter-control="input" data-sortable="true">Nombre</th>
+                                            <th data-field="Apellido Paterno" data-filter-control="input" data-sortable="true">Apellido Paterno</th>
+                                            <th data-field="Apellido Materno" data-width="15%" data-filter-control="input" data-sortable="true">Apellido Materno</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+                                        <% while (rs.next()) {
+                                                out.println("<tr>");
 
-                                            out.println("<td>");
+                                                out.println("<td>");
 
-                                            out.println(rs.getInt("NoControl"));
+                                                out.println(rs.getInt("NoControl"));
 
-                                            out.println("</td><td>");
+                                                out.println("</td><td>");
 
-                                            out.println(rs.getString("Nombre"));
+                                                out.println(rs.getString("Nombre"));
 
-                                            out.println("</td><td>");
+                                                out.println("</td><td>");
 
-                                            out.println(rs.getString("ApPaterno"));
+                                                out.println(rs.getString("ApPaterno"));
 
-                                            out.println("</td><td>");
+                                                out.println("</td><td>");
 
-                                            out.println(rs.getString("ApMaterno"));
+                                                out.println(rs.getString("ApMaterno"));
 
-                                            out.println("</td>");
+                                                out.println("</td>");
 
-                                            out.println("</tr>");
-                                        }%>
+                                                out.println("</tr>");
+                                            }%>
 
-                                </tbody>
-                            </table>
-
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>  
                     </div>
 
@@ -148,6 +161,24 @@
                                         });
                                     });
                                 });
+        </script>
+
+        <script>
+
+            var $table = $('#table');
+            $(function () {
+                $('#toolbar').find('select').change(function () {
+                    $table.bootstrapTable('refreshOptions', {
+                        exportDataType: $(this).val()
+                    });
+                });
+            });
+
+            var trBoldBlue = $("table");
+
+            $(trBoldBlue).on("click", "tr", function () {
+                $(this).toggleClass("bold-blue");
+            });
         </script>
     </body>
 </html>
