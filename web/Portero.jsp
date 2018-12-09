@@ -40,18 +40,16 @@
             <!--<div class="cerrar">
                <div class="form-group aju"><button class="btn btn-info btn-block" type="submit">CERRAR SESIÓN</button></div><br>
            </div>-->
-            <h2 id="h2-">Registro de asistencias</h2>     
-
-
+            <h2 id="h2">Registro de asistencias</h2>     
             <div  class="escanear">
                 <form  id="registrar-asistencia" method="POST" autocomplete="off">
 
-                    <div class="form">
+                    <div class="form" style="padding-left: 20%">
                         <label class="form-group">Número de control: </label>	
-                        <div class="form-group">
-                            <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando número de control. . ." autocomplete="off" required="required">
-                            <button id="btn-registrar" class="btn btn-black btn-block" type="submit">Registrar</button>
-                        </div><br>
+                        <div class="form-group" style="display:inline-block">
+                            <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando..." autocomplete="off" maxlength="8" required="required" style="width:40%;display: inline-block">
+                           <button id="btn-registrar" class="btn btn-black btn-block" type="submit" style="width:40%; display:inline-block">Registrar</button>
+                        </div>
                         <div class="radio-group "> 
                             <input type="radio" checked="checked" id="option-one" value="0" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-one">Normal</label>
                             <input type="radio" id="option-two" value="1" onclick="loadValueFromRadio(this.value)" name="selector" class="form-group aju2"><label class="label" for="option-two">Incidencia</label>
@@ -63,26 +61,14 @@
                 <div class="alert alert-success" id="aviso" style="display: none">
                     <!--<strong>Success!</strong> Indicates a successful or positive action.-->
                 </div>
-                <img src="" height="150px" width="150px" id="img-alumno-img" style="display:none">
-                <!--
-                <div class="alert alert-info" id="aviso-info" style="display: none">
-                    <strong>Info!</strong> Indicates a neutral informative change or action
-                </div>
-
-                <div class="alert alert-warning" id="aviso-advertencia" style="display: none">
-                    <strong>Warning!</strong> Indicates a warning that might need attention
-                </div>
-
-                <div class="alert alert-danger" id="aviso-error-grave" style="display: none">
-                    <strong>Danger!</strong> Indicates a dangerous or potentially negative action
-                </div>-->
-                <!-- *******************************************Fin Avisos ********************************************** -->
+                <img src="" height="150px" width="150px" id="img-alumno-img" style="display:none" >
 
                 <div class="form">
                     <div class="form-group aju"><button class="btn btn-dark btn-block" type="submit" id="button-manual">MANUAL</button></div><br>
                     <div id="contenedor_buscar">
-                        <label class="form-group">Ingrese nombre a buscar: </label>	
-                        <div class="form-group"><input class="form-control" type="text" name="nombre" id="MyIdName" placeholder="Ingrese nombre completo"></div><br>
+                        <label class="form-group">Nombre del Alumno: </label>	
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="nombre" id="MyIdName" placeholder="Ingrese nombre completo"></div>
                         <!-- <div class="form-group aju"><button class="btn btn-info btn-block" id="button-buscar" type="submit">BUSCAR</button></div><br>-->
 
                         <div>
