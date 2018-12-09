@@ -103,6 +103,13 @@
            
             <h2 id="h2">Cambiar Contraseña</h2>
             <br><br><hr>
+            <%
+                    String aviso = (String)request.getAttribute("AvisoContrasena");
+                    if (aviso!=null){
+                        out.println(aviso);
+                        request.setAttribute("AvisoContrasena", null);
+                    }
+                %>
             <form name="Cambiar" method="post" action="CambiarContrasena">
                 <div id="cont_buscar">
                     <div id="no_co">
@@ -121,7 +128,7 @@
                                        lowercase letter, and at least 8 or more characters"
                                        Maxlength ="16" minlength="2"
                                value=""  placeholder="Esperando contraseña..." />
-                        <input type="hidden" value=<%= request.getSession().getAttribute("usuario")%> name="SesionActiva" id="SesionActiva"/>
+                        <input type="hidden" value="Coordinador" name="SesionActiva" id="SesionActiva"/>
                     </div>
 
                 </div>
@@ -137,11 +144,11 @@
                 </div>
             </form>
                     <div id="message">
-                    <h3>Password must contain the following:</h3>
-                    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                    <p id="number" class="invalid">A <b>number</b></p>
-                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    <h3>La contraseña debe contener</h3>
+                    <p id="letter" class="invalid"> <b>Al menos una Minuscula</b> </p>
+                    <p id="capital" class="invalid"> <b>Al menos una Mayuscua</b> </p>
+                    <p id="number" class="invalid"> <b>Numero 0-9</b></p>
+                    <p id="length" class="invalid"> <b> Minimo8 caracteres</b></p>
                     </div>
         </div>
                     <script>

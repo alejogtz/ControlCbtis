@@ -40,8 +40,15 @@
 	<div id="contenedor">	
             <%
                     String aviso = (String)request.getAttribute("Mensaje");
-                    if (aviso!=null)
-                    out.println(aviso);
+                    if (aviso!=null){
+                        out.println(aviso);                 
+                        request.setAttribute("Mensaje", null);
+                    }
+                    aviso = (String)request.getAttribute("AvisoContrasena");
+                    if (aviso!=null){
+                        out.println(aviso);    
+                        request.setAttribute("AvisoContrasena", null);
+                    }
                 %>
 		<h2 id="h2-">Bienvenido Coordinador</h2>  		
 		<form name="reporte" method="get" action="/WebProjectCbtis/pdf">

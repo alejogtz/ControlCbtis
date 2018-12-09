@@ -49,7 +49,7 @@
                         </div>  
 
                         <div class="form-group" style="background-color: white">
-                            <input class="form-control" id="txtpass" type="password" name="contrasena" placeholder="Contraseña" maxlength="16" required>
+                            <input class="form-control" id="txtpass" type="password" name="contrasena" placeholder="Contraseña" maxlength="16"  >
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit" value="Iniciar Sesion" id="btniniciar">ACCEDER</button>

@@ -59,7 +59,7 @@
         <%
 
 Class.forName("com.mysql.jdbc.Driver");
-Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "chivas1958");
+Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "");
 
 Statement Estamento = conexion.createStatement();
 ResultSet rs = Estamento.executeQuery(""

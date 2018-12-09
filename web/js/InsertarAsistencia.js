@@ -46,7 +46,7 @@ function post(event) {
         if (this.status === 200) {
 
             mensaje.className = "alert alert-success";
-            mensaje.innerHTML = "<strong>Exito: </strong>  Asistencia para el número de control: <br><strong>" + nocontrol + "</strong> registrado correctamente";
+            mensaje.innerHTML = "<strong>Exito: </strong>  Asistencia para el número de control:<strong>" + nocontrol + "</strong> registrado correctamente";
             imagen.style.display = "block";
             imagen.src = this.responseText;
 

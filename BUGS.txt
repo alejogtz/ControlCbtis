@@ -1,16 +1,18 @@
--Validacion campo vacio a NoControl
--Agregar más informe de error al insertar Asistencia
--Valida que no se inserte más de dos veces en el mismo dia
+//-Validacion campo vacio a NoControl
+//-Agregar más informe de error al insertar Asistencia
+//-Valida que no se inserte más de dos veces en el mismo dia
 
--Cambiar la contraseña de Portero y Coordinador
--Diseño de la imagen del alumno
--Cambiar dinamica al mostrar la imagen** (Tal vez una opcion de revertir la accion)
+//-Cambiar la contraseña de Portero y Coordinador
+C ; -Diseño de la imagen del alumno
+C ; -Cambiar dinamica al mostrar la imagen** (Tal vez una opcion de revertir la accion)
 
--Incidencia, agregar opcion de reportar o algo asi
--que muestre la lista de alumnos y su 
+C ; -Incidencia, agregar opcion de reportar o algo asi
+C ; -que muestre la lista de alumnos y su 
 
--Boton de registrar *
+C ; -Boton de registrar *
 
+C ; // -PDF validar que no muestre el pdf si no hay asistencias
 
-590122gova
--Dinamica para cambiar contraseñas
+C ; 590122gova
+C ; -Dinamica para cambiar contraseñas
+
