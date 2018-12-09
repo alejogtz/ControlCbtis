@@ -38,13 +38,13 @@
             </div>
             </nav>
 	<div id="contenedor">	
-		<h2 id="h2-">Bienvenido</h2>  		
+		<h2 id="h2-">Bienvenido Coordinador</h2>  		
 		<form name="reporte" method="get" action="/WebProjectCbtis/pdf">
                     <div  class="escanear">
                     <div class="form">	
                     <label for="input-number" class="form-group">Número de control: </label>	
-                            <div  class="form-group">
-                                <input class="form-control" type="text" value="" name="txtId"minlength="6" maxlength="9" placeholder="Esperando Numero..." onkeypress="return solonumeros(event)">
+                            <div  class="form-group">                                
+                                <input class="form-control" type="text" name="txtId" minlength="6" maxlength="9" required="required" placeholder="Esperando Numero..." onkeypress="return solonumeros(event)">
                             </div>
                     <br>
                     <div class="form-group aju">

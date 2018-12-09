@@ -22,3 +22,16 @@ BEGIN
 	
 	RETURN counter;
 END
+
+---------------------< Funcion que verifica si existe un alumno > ---------------------
+
+CREATE OR REPLACE FUNCTION existeEsteAlumno(NoControl int) RETURNS BOOLEAN 
+BEGIN
+	DECLARE EXISTE INT DEFAULT 0;
+	SELECT COUNT(1) INTO EXISTE FROM estudiante WHERE estudiante.NoControl = NoControl;
+	
+	IF EXISTE = 0 THEN 
+		RETURN FALSE;
+	ELSE RETURN TRUE;
+	END IF;
+END

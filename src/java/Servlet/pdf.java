@@ -52,9 +52,8 @@ public class pdf extends HttpServlet {
 
         try {
             //>>>>>>>>---------------------- Pero antes.... Verificar si este alumno cuenta con asistencias registradas -------------------------
-            if (!tieneAsistenciasRegistradas(id)) {
-                throw new Exception("No se puede generar un reporte si no tienes asistencias :-/");
-            }
+            if (!existeEsteAlumno(id)){throw new Exception("El alumno con No. control: " + id + " No existe");}
+            if (!tieneAsistenciasRegistradas(id)) {throw new Exception("No se puede generar un reporte vacío");}
 
             // Else --------------- Visualziar un msje de Advertencia que indique que No se han registrado asistencias de este alumno ---------
             //>>>>>>>> -------------------------End logica -----------------------------------------------------
@@ -82,7 +81,7 @@ public class pdf extends HttpServlet {
                 String Turno = "Turno: " + rs.getString(8);
 
                 try {
-                    Image imagenes = Image.getInstance("C:/git/Netbeans/WebProjectCbtis/web/images/page_1.jpg");
+                    Image imagenes = Image.getInstance("C:\\Users\\Alessio\\Desktop\\ControlCbtis\\web\\images\\page_1.jpg");
                     imagenes.setAlignment(Element.ALIGN_CENTER);
                     imagenes.scaleToFit(550, 100);
 
@@ -194,10 +193,9 @@ public class pdf extends HttpServlet {
         } catch (Exception ex) {
             response.setContentType("text/html;charset=UTF-8");
             outs = response.getWriter();
-            outs.print(" <div class=\"alert alert-info alert-dismissable\" role=\"alert\"> "
+            outs.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
                     + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>"
-                    + "<strong>Información!</strong> No se puede Crear un reporte vacío"
-                    + "</div> ");
+                    + "<strong>Advertencia! </strong>" + ex.getMessage() + "</div> ");
             RequestDispatcher rd = request.getRequestDispatcher("/Coordinadora.jsp");
             rd.include(request, response);
         } finally {
@@ -249,6 +247,34 @@ public class pdf extends HttpServlet {
             execQuery.close();
             rs.close();
             return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    public boolean existeEsteAlumno(int noControl){
+        Conexion conexion = null;
+        Connection con = null;
+        PreparedStatement execQuery = null;
+
+        try {
+
+            conexion = new Conexion();
+            if (conexion == null) {
+                throw new NullPointerException("Conexion is Null");
+            }
+            con = conexion.getConexion();
+
+            execQuery = con.prepareStatement("SELECT existeEsteAlumno(?) as EXISTE");
+            execQuery.setInt(1, noControl);
+            ResultSet rs = execQuery.executeQuery();
+            rs.next();
+            
+            boolean siExiste = rs.getBoolean("EXISTE");
+
+            execQuery.close();
+            rs.close();
+            return siExiste;
         } catch (SQLException ex) {
             return false;
         }
