@@ -24,7 +24,7 @@ function soloNumerosAqui(e) {
     var key = e.charCode;
     if (
             (key >= 48 && key <= 57 ) ||
-             key === 0 ) {}
+             key === 0 || key === 13 ) {}
     else {e.preventDefault();}
     /*key=e.keyCode || e.which;
      teclado = String.fromCharCode(key);

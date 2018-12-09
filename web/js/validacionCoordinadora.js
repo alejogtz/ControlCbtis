@@ -61,12 +61,14 @@ function borrarError(){
 }
 
 function solonumeros(e){
-    /*var key = e.charCode;
+    alert(e.charCode);
+    var key = e.charCode;
     if (
             (key >= 48 && key <= 57 ) ||
-             key === 0 ) {}
-    else {e.preventDefault();}*/
-    var key=e.keyCode || e.which;
+             key === 0 || key === 13) {}
+    else {e.preventDefault();}
+    }
+    /*key=e.keyCode || e.which;
     teclado = String.fromCharCode(key);
     numero="0123456789";
     especiales="8-37-38-46-0";
@@ -83,4 +85,4 @@ function solonumeros(e){
         
     }
 }
-
+*/
