@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">                        
                     <li class="nav-item">
-                        <a class="nav-link" href="NuevaContrasena.jsp">Cambiar Contraseña</a>
+                        <a class="nav-link" href="NuevaContrasenaPortero.jsp">Cambiar Contraseña</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="CerrarSesion">Cerrar Sesión</a>
@@ -49,6 +49,7 @@
             <!--<div class="cerrar">
                <div class="form-group aju"><button class="btn btn-info btn-block" type="submit">CERRAR SESIÓN</button></div><br>
            </div>-->
+            <h2 id="h2">Bienvenido Vigilante</h2><br><hr>     
             <h2 id="h2">Registro de asistencias</h2>     
             <div  class="escanear">
                 <form  id="registrar-asistencia" method="POST" autocomplete="off">

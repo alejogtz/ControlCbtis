@@ -16,7 +16,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Coordinacion</title>
+        <title>Cambiar Contraseña</title>
          <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/main3.css">
@@ -81,7 +81,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">                        
                     <li class="nav-item">
-                        <a class="nav-link" href="NuevaContrasena.jsp">Cambiar Contraseña</a>
+                        <a class="nav-link" href="#">Cambiar Contraseña</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="CerrarSesion">Cerrar Sesión</a>
