@@ -2,7 +2,7 @@ var bloqueAvisoRegistro = document.getElementById("div-advertir-registro");
 var inputName = document.getElementById("input-nocontrol");
 var formularioPost = document.getElementById("registrar-asistencia");
 var opcionRadio = "0";
-
+var intentos = 0;
 //formularioPost.addEventListener("submit", noEnviarSiCampoVacio);
 formularioPost.addEventListener("submit", post);
 
@@ -40,10 +40,10 @@ function post(event) {
     xhr.onload = function () {
         var mensaje = document.getElementById("aviso");
         var imagen = document.getElementById("img-alumno-img");
-        
-        
+
+
         console.log(this.status);
-         mensaje.style.display = "block";
+        mensaje.style.display = "block";
         if (this.status === 200) {
 
             mensaje.className = "alert alert-success";
@@ -52,39 +52,56 @@ function post(event) {
             imagen.src = this.responseText;
 
 
-        }else if (this.status === 404) {
-            
+        } else if (this.status === 404) {
+
+            intentos = intentos + 1;
             mensaje.className = "alert alert-danger";
             mensaje.innerHTML = "El alumno con Número de Control:<strong>" + nocontrol + "</strong> No existe en la base de datos. <br> Se ha enviado una notificación a la Coordinación";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 
-        }else if (this.status === 300) {
+        } else if (this.status === 300) {
             
+            intentos = intentos + 1;
             mensaje.className = "alert alert-warning";
             mensaje.innerHTML = "<strong>Advertencia</strong> La asistencia para el alumno con Número de Control: <strong> " + nocontrol + "</strong> ya está registrada";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 
-        }else if (this.status === 700) {
-            
+        } else if (this.status === 700) {
+
+            intentos = intentos + 1;
             mensaje.className = "alert alert-warning";
             mensaje.innerHTML = "<strong>Advertencia</strong> Lo sentimos, No podemos registrar asistencias, No es dia habil <br> Si es día habil, revise la fecha de su computadora";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 
-        }else if (this.status === 500) {
+        } else if (this.status === 500) {
             
             mensaje.className = "alert alert-danger";
             mensaje.innerHTML = "<strong>Fatal</strong> No se pudo establecer la conexión con la Base de datos X_X";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
-            
+
         } else {
             mensaje.className = "alert alert-danger";
             mensaje.innerHTML = "<strong>Error</strong> Alumno con numero de control:<strong>" + nocontrol + "</strong> No fue registrado;";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
+        }
+
+        if (intentos === 3) {
+            mensaje.className = "alert alert-warning";
+            mensaje.innerHTML = "<strong>Advertencia</strong>"
+                                + " ¿Ocurre algo?. Ha realizado 3 intentos fallidos al sistema X_X<br>"
+                                + "+ Verifique que la credencial sea valida, o consulte si existe el alumno con el botón MANUAL <br>"
+                                + "+ Si la sistencias ya está registrada, por favor no intente de nuevo :-)<br>"
+                                + "+ Compruebe que sea día hábil, de no ser así. Lo sentimos. No se permite el registro en dias inhabiles :-)";
+                        
+                                
+            imagen.style.display = "block";
+            imagen.src = "images/fotosalumno/default.jpg";
+            intentos = 0;
         }
         inputName.focus();
         inputName.value = '';
