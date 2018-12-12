@@ -44,18 +44,19 @@ public class CambiarContrasena extends HttpServlet {
                 Consultas co = new Consultas();
 
                 if (co.CambiarContrasena(md5.Encriptar(contrasena), user)) {
-                    out.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
-                            + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>"
+                    String aviso = " <center><div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "                            
                             + "<strong>Exito!</strong> La contraseña fue cambiada correctamente"
-                            + "</div> ");
+                            + "</div></center> ";
+                    request.setAttribute("Mensaje", aviso);
+                    
                     redirection(request, response, user);
                 } else {
-                    out.print(" <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "
-                            + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>"
+                    String aviso = " <center><div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "                            
                             + "<strong>Error!</strong> La contraseña no coincide"
-                            + "</div> ");
+                            + "</div></center> ";
+                    request.setAttribute("Mensaje", aviso);
                     redirection(request, response, user);
-                    
+
                 }
 
             } catch (CommunicationsException ex) {

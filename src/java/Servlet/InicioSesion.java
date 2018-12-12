@@ -54,9 +54,9 @@ public class InicioSesion extends HttpServlet {
                 }
             } else {
               
-                msje = " <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
-                "<strong>Alerta!</strong> La contraseña es incorrecta."+ 
-                "</div> ";
+                msje = "<center> <div class=\"alert alert-warning alert-dismissable\" role=\"alert\"> "+
+                "<strong>Error!</strong> La contraseña es incorrecta."+ 
+                "</div></center> ";
                 request.setAttribute("Mensaje", msje);
               
               

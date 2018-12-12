@@ -53,47 +53,47 @@ public class Enviarcorreo extends HttpServlet {
 
             String para = "carlos_19alber@hotmail.com";
             String mensaje = "Estimado usuario (Coordinador).\n "
-                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta.restaurarcorreo("coordinador") + "\n"
-                            + "No lo comparta por su seguridad.");
+                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta.restaurarcorreo("Coordinador") + "\n"
+                            + "No la comparta por su seguridad.");
             String asunto = "RECORDAR CONTRASEÑA";
 
             resultado = email.enviarCorreo(de, clave, para, mensaje, asunto);
 
             String para1 = "alessio_combo1@hotmail.com";
             String mensaje1 = "Estimado usuario (Vigilante).\n "
-                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta1.restaurarcorreo("vigilante") + "\n"
-                            + "No lo comparta por su seguridad.");
+                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta1.restaurarcorreo("Vigilante") + "\n"
+                            + "No la comparta por su seguridad.");
 
             resultado = email.enviarCorreo(de, clave, para1, mensaje1, asunto);
 
-            aviso = " <div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "
-                    + "<strong>Exito!</strong> Revise su correo electronico, ha recibido un mensaje con su contraseña."
-                    + "</div> ";
+            aviso = " <center><div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Exito!</strong> Revise su correo electrónico, ha recibido un mensaje con su contraseña."
+                    + "</div></center> ";
             request.setAttribute("Info-correo", aviso);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 
             rd.include(request, response);
         } catch (AddressException ex) {
-            aviso = " <div class=\"alert alert-danger alert-dismissable\" role=\"alert\"> "
-                    + "<strong>Fatal!</strong> Ha ocurrido un error con su direccion de Correo Electronico. Por favor, consulte a su programador :v"
-                    + "</div> ";
+            aviso = " <center><div class=\"alert alert-danger alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Error!</strong> Ha ocurrido un error con su dirección de Correo Electrónico. Por favor, contacte con el administrador."
+                    + "</div></center> ";
             request.setAttribute("Info-correo", aviso);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 
             rd.include(request, response);
 
         } catch (MessagingException e) {
-             aviso = " <div class=\"alert alert-danger alert-dismissable\" role=\"alert\"> "
-                    + "<strong>Fatal!</strong> Ha ocurrido un error con el envío de su contraseña. Por favor, corrobore que tenga accesos a Internet o llame a su proveedor ISP"
-                    + "</div> ";
+             aviso = " <center><div class=\"alert alert-danger alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Error!</strong> Ha ocurrido un error con el envío de su contraseña. Por favor, corrobore que tenga acceso a Internet o llame a su proveedor ISP"
+                    + "</div></center> ";
             request.setAttribute("Info-correo", aviso);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 
             rd.include(request, response);
         } catch (Exception ex) {
-            aviso = " <div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "
-                    + "<strong>Fatality!</strong> X_X Error Desconocido. Si esto ocurre es culpa de Carlitos"
-                    + "</div> ";
+            aviso = " <center><div class=\"alert alert-success alert-dismissable\" role=\"alert\"> "
+                    + "<strong>Error Fatal!</strong> X_X Error Desconocido. Si esto vuelve a suceder contacte con el administrador"
+                    + "</div></center> ";
             request.setAttribute("Info-correo", aviso);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 

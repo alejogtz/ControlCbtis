@@ -10,8 +10,6 @@ import Utilidades.md5;
 import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

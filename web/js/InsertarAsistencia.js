@@ -24,7 +24,6 @@ function noEnviarSiCampoVacio(event) {
 function post(event) {
     // Anular la redireccion de la pagina
     event.preventDefault();
-    console.log("Line: 27 - InsertarAsistencia.js -> Se supone que aui no deba estar -_-");
 
     var nocontrol = document.getElementById("input-nocontrol").value;
     var incidencia = document.getElementsByName("modo-entrada").value;
@@ -41,8 +40,10 @@ function post(event) {
     xhr.onload = function () {
         var mensaje = document.getElementById("aviso");
         var imagen = document.getElementById("img-alumno-img");
-
-        mensaje.style.display = "block";
+        
+        
+        console.log(this.status);
+         mensaje.style.display = "block";
         if (this.status === 200) {
 
             mensaje.className = "alert alert-success";
@@ -62,6 +63,13 @@ function post(event) {
             
             mensaje.className = "alert alert-warning";
             mensaje.innerHTML = "<strong>Advertencia</strong> La asistencia para el alumno con Número de Control: <strong> " + nocontrol + "</strong> ya está registrada";
+            imagen.style.display = "block";
+            imagen.src = "images/fotosalumno/default.jpg";
+
+        }else if (this.status === 700) {
+            
+            mensaje.className = "alert alert-warning";
+            mensaje.innerHTML = "<strong>Advertencia</strong> Lo sentimos, No podemos registrar asistencias, No es dia habil <br> Si es día habil, revise la fecha de su computadora";
             imagen.style.display = "block";
             imagen.src = "images/fotosalumno/default.jpg";
 

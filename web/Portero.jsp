@@ -49,7 +49,19 @@
             <!--<div class="cerrar">
                <div class="form-group aju"><button class="btn btn-info btn-block" type="submit">CERRAR SESIÓN</button></div><br>
            </div>-->
-            <h2 id="h2">Bienvenido Vigilante</h2><br><hr>     
+            <h2 id="h2">Bienvenido Vigilante</h2><br><hr> 
+            <%
+                String aviso = (String) request.getAttribute("Mensaje");
+                if (aviso != null) {
+                    out.println(aviso);
+                    request.setAttribute("Mensaje", null);
+                }
+                aviso = (String) request.getAttribute("AvisoContrasena");
+                if (aviso != null) {
+                    out.println(aviso);
+                    request.setAttribute("AvisoContrasena", null);
+                }
+            %>
             <h2 id="h2">Registro de asistencias</h2>     
             <div  class="escanear">
                 <form  id="registrar-asistencia" method="POST" autocomplete="off">
@@ -57,7 +69,7 @@
                     <div class="form" style="padding-left: 20%">
                         <label class="form-group">Número de control: </label>	
                         <div class="form-group" style="display:inline-block">
-                            <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando..." autocomplete="off" maxlength="8" required="required" style="width:40%;display: inline-block">
+                            <input class="form-control" onkeypress="soloNumerosAqui(event)" type="text" id="input-nocontrol" name="nocontrol" placeholder="Esperando..." autocomplete="off" maxlength="8" minlength="8" required="required" style="width:40%;display: inline-block">
                             <button id="btn-registrar" class="btn btn-primary btn-block" type="submit" style="width:40%; display:inline-block">Registrar</button>
                         </div>
                         <div class="radio-group "> 
@@ -81,7 +93,6 @@
                         <div>
                             <%@page import="java.sql.*" %>
                             <%
-
                                 Class.forName("com.mysql.jdbc.Driver");
                                 Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cbetis123", "root", "");
 

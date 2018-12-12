@@ -2,6 +2,7 @@ package Controlador;
 
 import Controlador.Conexion;
 import Utilidades.Console;
+import Utilidades.Semana;
 import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,6 +45,11 @@ public class OperacionAsistencias {
         
         try {
             
+            // Validar si es un dia valido
+            System.err.println(!Semana.esDiaHabil());
+            if (!Semana.esDiaHabil()) throw new IllegalArgumentException("Now");
+            //
+            
             conexion = new Conexion();
             if (conexion == null) throw new NullPointerException("Conexion is Null");
             
@@ -73,6 +79,10 @@ public class OperacionAsistencias {
             return sucess;
         } catch (CommunicationsException ex) {
             return 500;
+         }catch (IllegalArgumentException ex) {
+             Console.println("Dia o habil", "Lunes");
+                             return 700;
+
         } catch (NullPointerException ex) {
             return 500;
         } catch (SQLException ex) {

@@ -45,7 +45,7 @@ public class Enviarcorreovigilante extends HttpServlet {
             
             String para = "carlos_19alber@hotmail.com";
             String mensaje = "Estimado usuario (Vigilante).\n "
-                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta.restaurarcorreo("vigilante") + "\n"+
+                    + "Su contraseña de acceso es: " + md5.Desencriptar(consulta.restaurarcorreo("Vigilante") + "\n"+
                     "No lo comparta por su seguridad.");
             String asunto = "RECORDAR CONTRASEÑA";
             

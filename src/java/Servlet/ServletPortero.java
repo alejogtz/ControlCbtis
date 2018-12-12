@@ -11,6 +11,7 @@ import Controlador.Busqueda;
 import Controlador.OperacionAsistencias;
 import Utilidades.Console;
 import Utilidades.Parser.DeString;
+import Utilidades.Semana;
 
 @WebServlet(name = "ServletPortero", urlPatterns = {"/ServletPortero"})
 public class ServletPortero extends HttpServlet {
@@ -33,6 +34,8 @@ public class ServletPortero extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        
+        
 
         int nocontrol = DeString.aInt(request.getParameter("nocontrol"));
         boolean incidencia = DeString.aBoolean(request.getParameter("incidencia"));
@@ -62,7 +65,10 @@ public class ServletPortero extends HttpServlet {
                 
                 response.sendError(500, "No se pude establece la conexión con la Base de Datos");
                 break;
+            case 700:
                 
+                response.sendError(700, "No es dia habil para insertar Asistencias");
+                break;
             default:
                 break;
         }
